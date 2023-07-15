@@ -3,16 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.13.7",
+    "@mui/material": "^5.13.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.38",
-    "@types/react": "^18.2.14",
-    "@types/react-dom": "^18.2.6",
+    "@types/node": "^16.18.35",
+    "@types/react": "^18.2.11",
+    "@types/react-dom": "^18.2.4",
+    "axios": "^1.4.0",
+    "classnames": "^2.3.2",
+    "feather-icons": "^4.29.0",
+    "framer-motion": "^10.12.16",
+    "libphonenumber-js": "^1.10.37",
+    "notistack": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-hook-form": "^7.45.0",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.12.1",
     "react-scripts": "5.0.1",
+    "react-select": "^5.7.3",
+    "sass": "^1.63.3",
+    "swiper": "^10.0.3",
+    "tss-react": "^4.8.6",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -39,5 +57,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@hookform/devtools": "^4.3.1",
+    "gh-pages": "^5.0.0",
+    "prettier": "3.0.0"
   }
 }

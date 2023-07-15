@@ -1,0 +1,40 @@
+.main {
+    padding: 10px;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 700px;
+
+    // border: 1px solid red;
+    ul {
+        display: flex;
+        justify-content: space-around;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            a {
+                p {
+                    color: rgba(255, 255, 255, 0.309);
+                }
+            }
+
+            &:nth-child(5) {
+                svg {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.linkActive {
+    padding: 6px;
+    cursor: pointer;
+    border: 1px solid #979ea2;
+
+    p {
+        color: white !important;
+    }
+}

@@ -1,0 +1,27 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    p {
+        color: rgb(126, 0, 0);
+        font-weight: 500;
+        padding-left: 10px;
+    }
+}
+
+.inp {
+    border: 1px solid #979ea2 !important;
+    background-color: #546874;
+    border-radius: 5px;
+    width: 100%;
+    
+    label {
+        color: #a4adb1 !important;
+        font-weight: 500;
+        background-color: #546874;
+        padding: 4px;
+        border-radius: 5px;
+        // border-bottom: 1px solid #979ea2;
+    }
+}

@@ -1,0 +1,21 @@
+.main {
+    background-color: rgba(128, 128, 128, 0.595);
+    padding: 10px;
+    margin: 0 auto;
+    width: fit-content;
+    max-width: 700px;
+    padding: 20px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.297);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    button {
+        background-color: rgba(0, 128, 0, 0.309);
+        padding: 10px;
+        border-radius: 10px;
+        width: 60%;
+        margin: 0 auto;
+    }
+}

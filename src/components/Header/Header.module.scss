@@ -1,0 +1,35 @@
+.header {
+    margin-bottom: 50px;
+    background-color: rgb(0, 0, 0) !important;
+    // height:  ;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
+
+.userBlock {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    &__inp {
+        background-color: white;
+        border-radius: 5px;
+    }
+
+    button {
+        width: fit-content;
+        height: fit-content;
+        padding: 6px 10px;
+        background-color: rgb(0, 0, 30);
+        border-radius: 5px;
+        border: 3px solid rgb(0, 0, 75);
+
+        p {
+            font-weight: 700;
+            color: white;
+        }
+    }
+}

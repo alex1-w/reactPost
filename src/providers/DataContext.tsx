@@ -1,15 +1,22 @@
 import { FC, createContext, useContext, useState } from "react";
 import { IPackageData } from "../types/stepOne.interface";
 
-export const DataContext = createContext<{ data: { [key: string]: string | number } }>({
-    setDataValues: (newData: any) => { return null },
+type Data = { [key: string]: string | number }
+
+interface IDataContext {
+    data: Data
+    setDataValues: (newData: Data) => void
+}
+
+export const DataContext = createContext<IDataContext>({
+    setDataValues: (_newData: Data) => { return null },
     data: {}
 })
 
 export const DataProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
     const [data, setData] = useState({})
 
-    const setDataValues = (newData: any) => {
+    const setDataValues = (newData: Data) => {
         setData((prev) => ({
             ...prev,
             ...newData

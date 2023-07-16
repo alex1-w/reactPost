@@ -1,9 +1,10 @@
 import { Header } from "./components/Header/Header";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { StepTwo } from "./pages/StepTwo/StepTwo";
-import { Package } from "./pages/Package/Package";
+import { StepOne } from "./pages/StepOne/StepOne";
 import { Layout } from "./pages/Layout/Layout";
 import { NotFoundPages } from "./pages/NotFoundPages/NotFoundPages";
+import { StepThree } from "./pages/StepThree/StepThree";
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
 
         <Route path="/" element={<Layout />}>
 
-          <Route index element={<Package />} />
+          <Route index element={<StepOne />} />
           <Route path="step-two" element={<StepTwo />} />
+          <Route path="step-three" element={<StepThree />} />
           <Route path="*" element={<NotFoundPages />} />
 
         </Route>

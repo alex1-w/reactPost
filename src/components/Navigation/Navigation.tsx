@@ -36,8 +36,8 @@ export const Navigation = () => {
                             to={link.link}
                             className={({ isActive }) => isActive ? styles.linkActive : ''}>
                             <p> {link.name}</p>
-                        </NavLink>
                         {arrowIcon}
+                        </NavLink>
                     </li>
                 ))
             }</ul>

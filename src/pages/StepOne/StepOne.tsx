@@ -1,4 +1,4 @@
-import styles from './Package.module.scss'
+import styles from './StepOne.module.scss'
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
 import { Header } from '../../components/Header/Header'
 import { Button, Typography } from '@mui/material'
@@ -7,8 +7,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { Navigation } from '../../components/Navigation/Navigation'
 import { InputBlock } from '../../components/UI/InputBlock/InputBlock'
 
-
-interface IStepOne {
+export interface IStepOne {
     firstNameSenders: string,
     lastNameSenders: string,
     phoneNumberSenders: string,
@@ -17,7 +16,7 @@ interface IStepOne {
     lastNameReceiver: string,
 }
 
-export const Package = () => {
+export const StepOne = () => {
     const { setDataValues, data } = useData()
     const navigation = useNavigate()
 
@@ -37,20 +36,23 @@ export const Package = () => {
 
     const fieldNameCheck = (field: string) => { return Boolean(field.match(/[a-z]/i)) || 'только латиница' }
 
-    const error: SubmitErrorHandler<IStepOne> = data => {
-        console.log('error', data)
-    }
+    const error: SubmitErrorHandler<IStepOne> = data => { console.log('error', data) }
+
     const submit: SubmitHandler<IStepOne> = data => {
         console.log('submit', data.firstNameReceiver);
 
         setDataValues(
             {
+                ...data,
                 fromWhom: { person: { firsName: data.firstNameSenders, lastName: data.lastNameSenders } },
                 toWhom: { person: { firsName: data.firstNameReceiver, lastName: data.lastNameReceiver } }
             }
         )
+        console.log(data);
+
         return navigation('/step-two')
     }
+    console.log(data);
 
     return (
         <>

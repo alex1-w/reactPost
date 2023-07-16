@@ -10,11 +10,15 @@
         justify-content: space-around;
 
         li {
+
             display: flex;
             align-items: center;
-            gap: 10px;
 
             a {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
                 p {
                     color: rgba(255, 255, 255, 0.309);
                 }

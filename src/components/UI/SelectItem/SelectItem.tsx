@@ -41,13 +41,7 @@ export const SelectItem: FC<ISelectProps> = ({ control, register, name, rules, e
                             animate={{ height: 'auto', y: 0 }}
                             exit={{ height: 0, y: '-100' }}
                         >
-
-                            {errors &&
-                                <motion.p
-                                >
-                                    {errors[name]?.message}
-                                </motion.p>}
-
+                            {errors && <p>{errors[name]?.message}</p>}
                         </motion.div>
                     </AnimatePresence>
 

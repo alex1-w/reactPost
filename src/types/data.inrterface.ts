@@ -15,12 +15,10 @@ export interface IOption {
     label: string
 }
 
-
-
 export interface IDataContext {
     fromWhom: {
         address: { city: string, country: string, house: string, street: string },
-        person: { firstName: string, LastName: string},
+        person: { firstName: string, LastName: string },
     },
     toWhom: {
         address: { city: string, country: string, house: string, street: string },

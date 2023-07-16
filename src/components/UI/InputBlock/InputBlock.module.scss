@@ -8,6 +8,17 @@
         font-weight: 500;
         padding-left: 10px;
     }
+
+    &__inputBlock {
+        display: flex;
+        align-items: center;
+
+        p {
+            color: #546874;
+            font-size: 18px;
+            font-weight: 700;
+        }
+    }
 }
 
 .inp {
@@ -15,7 +26,7 @@
     background-color: #546874;
     border-radius: 5px;
     width: 100%;
-    
+
     label {
         color: #a4adb1 !important;
         font-weight: 500;
@@ -24,4 +35,14 @@
         border-radius: 5px;
         // border-bottom: 1px solid #979ea2;
     }
+}
+
+.numberType {
+    width: 90px !important;
+}
+
+
+.errorsBlock {
+    // width: 100px;
+    
 }

@@ -1,4 +1,4 @@
-import styles from "./Package.module.scss";
+import styles from "./StepOne.module.scss";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import { Header } from "../../components/Header/Header";
 import { Button, Typography } from "@mui/material";
@@ -16,9 +16,30 @@ interface IStepOne {
   lastNameReceiver: string;
 }
 
-export const Package = () => {
+export const StepOne = () => {
   const { setDataValues, data } = useData();
   const navigation = useNavigate();
+
+  const fieldNameCheck = (field: string) => {
+    return Boolean(field.match(/[a-z]/i)) || "только латиница";
+  };
+
+  const rulesForNameInput = {
+    validate: fieldNameCheck,
+    minLength: 2,
+    required: {
+      value: true,
+      message: "поле не заполнено",
+    },
+  };
+
+  const rulesForTelInput = {
+    minLength: { value: 11, message: "введите корректный номер" },
+    required: {
+      value: true,
+      message: "поле не заполнено",
+    },
+  };
 
   const {
     register,
@@ -36,10 +57,6 @@ export const Package = () => {
       phoneNumberReceiver: "",
     },
   });
-
-  const fieldNameCheck = (field: string) => {
-    return Boolean(field.match(/[a-z]/i)) || "только латиница";
-  };
 
   const error: SubmitErrorHandler<IStepOne> = (data) => {
     console.log("error", data);
@@ -72,14 +89,7 @@ export const Package = () => {
             errors={errors}
             name="firstNameSenders"
             register={register}
-            rules={{
-              validate: fieldNameCheck,
-              minLength: 2,
-              required: {
-                value: true,
-                message: "поле не заполнено",
-              },
-            }}
+            rules={rulesForNameInput}
             size="medium"
             type="text"
             label="Имя отправителя"
@@ -88,14 +98,7 @@ export const Package = () => {
             errors={errors}
             name="lastNameSenders"
             register={register}
-            rules={{
-              validate: fieldNameCheck,
-              minLength: 2,
-              required: {
-                value: true,
-                message: "поле не заполнено",
-              },
-            }}
+            rules={rulesForNameInput}
             size="medium"
             type="text"
             label="Имя отправителя"
@@ -104,18 +107,10 @@ export const Package = () => {
             errors={errors}
             name="phoneNumberSenders"
             register={register}
-            rules={{
-              // validate: checkNumber,
-              // minLength: 7,
-              // max: 10,
-              required: {
-                value: true,
-                message: "поле не заполнено",
-              },
-            }}
+            rules={rulesForTelInput}
             size="medium"
             type="number"
-            label="номер тел. отправителя"
+            label="тел. номер отправителя"
           />
         </div>
 
@@ -126,14 +121,7 @@ export const Package = () => {
             errors={errors}
             name="firstNameReceiver"
             register={register}
-            rules={{
-              validate: fieldNameCheck,
-              minLength: 2,
-              required: {
-                value: true,
-                message: "поле не заполнено",
-              },
-            }}
+            rules={rulesForNameInput}
             size="medium"
             type="text"
             label="Имя получателя"
@@ -143,14 +131,7 @@ export const Package = () => {
             errors={errors}
             name="lastNameReceiver"
             register={register}
-            rules={{
-              validate: fieldNameCheck,
-              minLength: { value: 2, message: "минимальное значение - 2" },
-              required: {
-                value: true,
-                message: "поле не заполнено",
-              },
-            }}
+            rules={rulesForNameInput}
             size="medium"
             type="text"
             label="Фамилия получателя"
@@ -159,18 +140,10 @@ export const Package = () => {
             errors={errors}
             name="phoneNumberReceiver"
             register={register}
-            rules={{
-              // validate: checkNumber,
-              // minLength: 7,
-              // max: 10,
-              required: {
-                value: true,
-                message: "поле не заполнено",
-              },
-            }}
+            rules={rulesForTelInput}
             size="medium"
             type="number"
-            label="номер тел. отправителя"
+            label="тел. номер отправителя"
           />
         </div>
 

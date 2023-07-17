@@ -21,7 +21,7 @@ export const StepTwo = () => {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isValid, submitCount },
     watch,
   } = useForm<IStepTwo>({
     mode: "onBlur",
@@ -37,7 +37,7 @@ export const StepTwo = () => {
   console.log("errors", errors);
 
   const onSubmit: SubmitHandler<IStepTwo> = (data) => {};
-  
+
   return (
     <>
       <Container>
@@ -90,16 +90,6 @@ export const StepTwo = () => {
                 <RadioBlock name="расценки" values={insuranceTypes} />
               )}
             </div>
-
-            {/* 
-                        <FormControl>
-                            <FormLabel>Colors</FormLabel>
-                            <RadioGroup defaultValue="medium" name="radio-buttons-group" row={true}>
-                                <FormControlLabel control={<Radio />} value="primary" label="Primary" color="primary" />
-                                <FormControlLabel control={<Radio />} value="danger" label="Danger" color="danger" />
-                                <FormControlLabel control={<Radio />} value="info" label="Info" color="info" />
-                            </ RadioGroup >
-                        </FormControl> */}
           </div>
 
           <Button
@@ -107,7 +97,7 @@ export const StepTwo = () => {
             variant="contained"
             color="secondary"
             size="large"
-            // disabled={submitCount !== 0 && !isValid}
+            disabled={submitCount !== 0 && !isValid}
           >
             Далее
           </Button>

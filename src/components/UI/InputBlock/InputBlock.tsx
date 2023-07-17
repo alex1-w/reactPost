@@ -5,7 +5,6 @@ import { RegisterOptions, UseFormRegister } from "react-hook-form";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface IInputBlock {
-  placeholder?: string;
   name: string;
   label?: string;
   size: "small" | "medium";
@@ -18,7 +17,6 @@ interface IInputBlock {
 export const InputBlock: FC<IInputBlock> = ({
   errors,
   name,
-  placeholder,
   register,
   rules,
   size,

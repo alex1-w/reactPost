@@ -7,13 +7,8 @@ import { SelectItem } from "../../components/UI/SelectItem/SelectItem";
 import { RadioBlock } from "../../components/UI/RadioBlock/RadioBlock";
 import { insuranceTypes, options } from "../../data/data";
 import { AnimatePresence, motion } from "framer-motion";
+import { IStepTwo } from "../../types/StepsInterfaces";
 
-interface IStepTwo {
-  sendersCountry: string;
-  receiverCountry: string;
-  insurance: boolean;
-  insuranceType?: "simple" | "standart" | "pro" | "";
-}
 const getValue = (value: string) =>
   value ? options.find((option) => option.value === value) : "";
 

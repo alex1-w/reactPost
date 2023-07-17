@@ -23,7 +23,6 @@ export const RadioBlock: FC<IRadioBlockProps> = ({
 }) => {
   return (
     <>
-    <p>fffggf</p>
       <FormControl>
         <FormLabel>{label}</FormLabel>
 

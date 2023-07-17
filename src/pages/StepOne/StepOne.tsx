@@ -6,15 +6,7 @@ import { useData } from "../../providers/DataContext";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Navigation } from "../../components/Navigation/Navigation";
 import { InputBlock } from "../../components/UI/InputBlock/InputBlock";
-
-interface IStepOne {
-  firstNameSenders: string;
-  lastNameSenders: string;
-  phoneNumberSenders: string;
-  phoneNumberReceiver: string;
-  firstNameReceiver: string;
-  lastNameReceiver: string;
-}
+import { IStepOne } from "../../types/StepsInterfaces";
 
 export const StepOne = () => {
   const { setDataValues, data } = useData();

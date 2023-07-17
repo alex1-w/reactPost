@@ -43,6 +43,7 @@ export const SelectItem: FC<ISelectProps> = ({
       name={name}
       rules={rules}
       render={({ field: { name, value, onChange }, fieldState: { error } }) => (
+
         <div className={styles.main}>
           <ReactSelect
             onChange={(newValue) => {
@@ -65,6 +66,7 @@ export const SelectItem: FC<ISelectProps> = ({
             )}
           </AnimatePresence>
         </div>
+        
       )}
     />
   );

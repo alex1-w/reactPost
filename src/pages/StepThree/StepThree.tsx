@@ -10,7 +10,7 @@ export const StepThree = () => {
   const {
     handleSubmit,
     register,
-    formState: { isValid, submitCount , errors},
+    formState: { isValid, submitCount, errors },
   } = useForm<IStepThree>({ mode: "onBlur", reValidateMode: "onChange" });
 
   const error: SubmitErrorHandler<IStepThree> = (data) => {

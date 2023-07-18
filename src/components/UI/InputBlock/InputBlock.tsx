@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import cn from "classnames";
 
 interface IInputBlock {
-  // sizeStyle?: { unit: "кг" | "см"  };
   sizeStyle?: "кг" | "см";
   name: string;
   label?: string;
@@ -28,33 +27,38 @@ export const InputBlock: FC<IInputBlock> = ({
   sizeStyle,
 }) => {
   return (
-    <div className={styles.sizingBlock}>
+    <div
+      className={cn(styles.main, {
+        [styles.sizeStyles]: sizeStyle === "кг" || sizeStyle === "см",
+      })}
+    >
       <div
-        className={cn(styles.main, {
-          [styles.sizeStyle]: sizeStyle === "кг" || sizeStyle === "см",
+        className={cn({
+          [styles.wrapper]: sizeStyle === "кг" || sizeStyle === "см",
         })}
       >
         <TextField
           type={type}
           size={size}
-          className={styles.inp}
+          className={styles.main__inp}
           label={label}
           {...(register && register(name, { ...rules }))}
         />
-
-        <AnimatePresence>
-          {errors[name] && (
-            <motion.p
-              initial={{ height: 0, y: "-100" }}
-              animate={{ height: "auto", y: 0 }}
-              exit={{ height: 0, y: "-100" }}
-            >
-              {errors[name].message}
-            </motion.p>
-          )}
-        </AnimatePresence>
+        {sizeStyle && <p className={styles.sizeStyle__unit}>{sizeStyle}</p>}
       </div>
-      {sizeStyle && <p className={styles.sizingBlock__unit}>{sizeStyle}</p>}
+
+      <AnimatePresence>
+        {errors[name] && (
+          <motion.p
+            className={styles.main__error}
+            initial={{ height: 0, y: "-100" }}
+            animate={{ height: "auto", y: 0 }}
+            exit={{ height: 0, y: "-100" }}
+          >
+            {errors[name].message}
+          </motion.p>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

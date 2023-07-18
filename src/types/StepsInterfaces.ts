@@ -21,3 +21,12 @@ export interface IStepThree {
   length: number;
   packageType: "paperboard" | "plastic";
 }
+
+export interface IStepFour {
+  cardNumber: number;
+  passport: IPassportType;
+}
+interface IPassportType {
+  series: number;
+  number: number;
+}

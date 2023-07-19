@@ -6,6 +6,7 @@ import { Layout } from "./pages/Layout/Layout";
 import { NotFoundPages } from "./pages/NotFoundPages/NotFoundPages";
 import { StepThree } from "./pages/StepThree/StepThree";
 import { StepFour } from "./pages/StepFour/StepFour";
+import { StepFive } from "./pages/StepFive/StepFive";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="step-two" element={<StepTwo />} />
           <Route path="step-three" element={<StepThree />} />
           <Route path="step-four" element={<StepFour />} />
+          <Route path="step-five" element={<StepFive />} />
           <Route path="*" element={<NotFoundPages />} />
         </Route>
       </Routes>

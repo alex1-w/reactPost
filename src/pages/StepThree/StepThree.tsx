@@ -5,8 +5,13 @@ import { Navigation } from "../../components/Navigation/Navigation";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import { IStepThree } from "../../types/StepsInterfaces";
 import { InputBlock } from "../../components/UI/InputBlock/InputBlock";
+import { useNavigate } from "react-router-dom";
+import { coinIcon, packageIcon } from "../../data/icontsSvg";
+import { Form } from "../../components/Form/Form";
 
 export const StepThree = () => {
+  const navigate = useNavigate();
+
   const {
     handleSubmit,
     register,
@@ -19,13 +24,20 @@ export const StepThree = () => {
 
   const submit: SubmitHandler<IStepThree> = (data) => {
     console.log("error", data);
+
+    return navigate("/step-four");
   };
 
   return (
     <Container>
-      <form className={styles.formBlock} onSubmit={handleSubmit(submit, error)}>
-        <Navigation />
-
+      <Form
+        error={error}
+        submit={submit}
+        submitCount={submitCount}
+        handleSubmit={handleSubmit}
+        isValid={isValid}
+        head={{ title: "Габариты коробки", icon: packageIcon }}
+      > 
         <div className={styles.inputsBlock}>
           <InputBlock
             errors={errors}
@@ -76,17 +88,7 @@ export const StepThree = () => {
             sizeStyle={"см"}
           />
         </div>
-
-        <Button
-          type="submit"
-          variant="contained"
-          color="secondary"
-          size="large"
-          disabled={submitCount !== 0 && !isValid}
-        >
-          Далее
-        </Button>
-      </form>
+      </Form>
     </Container>
   );
 };

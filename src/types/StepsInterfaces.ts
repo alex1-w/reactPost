@@ -30,3 +30,9 @@ interface IPassportType {
   series: number;
   number: number;
 }
+
+export interface IStepFive {
+
+  
+}
+

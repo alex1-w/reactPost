@@ -51,9 +51,9 @@ export const InputBlock: FC<IInputBlock> = ({
         {errors[name] && (
           <motion.p
             className={styles.main__error}
-            initial={{ height: 0, y: "-100" }}
-            animate={{ height: "auto", y: 0 }}
-            exit={{ height: 0, y: "-100" }}
+            initial={{ height: 0, y: "-100", opacity: 0 }}
+            animate={{ height: "auto", y: 0, opacity: 1 }}
+            exit={{ height: 0, y: "-100", opacity: 0 }}
           >
             {errors[name].message}
           </motion.p>

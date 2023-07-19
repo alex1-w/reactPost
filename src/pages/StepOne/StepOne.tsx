@@ -7,6 +7,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Navigation } from "../../components/Navigation/Navigation";
 import { InputBlock } from "../../components/UI/InputBlock/InputBlock";
 import { IStepOne } from "../../types/StepsInterfaces";
+import { Form } from "../../components/Form/Form";
+import { worldIcon } from "../../data/icontsSvg";
 
 export const StepOne = () => {
   const { setDataValues, data } = useData();
@@ -56,23 +58,19 @@ export const StepOne = () => {
   const submit: SubmitHandler<IStepOne> = (data) => {
     console.log("submit", data.firstNameReceiver);
 
-    setDataValues({
-      // fromWhom: { person: { firsName: data.firstNameSenders, lastName: data.lastNameSenders } },
-      // toWhom: { person: { firsName: data.firstNameReceiver, lastName: data.lastNameReceiver } }
-      // fromWhom: { person: { firsName: data.firstNameSenders, lastName: data.lastNameSenders } },
-      // toWhom: { person: { firsName: data.firstNameReceiver, lastName: data.lastNameReceiver } }
-    });
+    setDataValues({});
     return navigation("/step-two");
   };
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(submit, error)}
-        className={styles.formBlock}
-        noValidate
+      <Form
+        error={error}
+        submit={submit}
+        handleSubmit={handleSubmit}
+        isValid={isValid}
+        submitCount={submitCount}
       >
-        <Navigation />
 
         <div className={styles.formBlock__item}>
           <h3>От кого</h3>
@@ -139,7 +137,7 @@ export const StepOne = () => {
           />
         </div>
 
-        <Button
+        {/* <Button
           type="submit"
           variant="contained"
           color="secondary"
@@ -147,8 +145,8 @@ export const StepOne = () => {
           disabled={submitCount !== 0 && !isValid}
         >
           Далее
-        </Button>
-      </form>
+        </Button> */}
+      </Form>
     </>
   );
 };

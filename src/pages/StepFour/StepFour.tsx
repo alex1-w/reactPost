@@ -4,8 +4,12 @@ import { Navigation } from "../../components/Navigation/Navigation";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import { IStepFour } from "../../types/StepsInterfaces";
 import { InputBlock } from "../../components/UI/InputBlock/InputBlock";
+import { useNavigate } from "react-router-dom";
+import { coinIcon } from "../../data/icontsSvg";
+import { Form } from "../../components/Form/Form";
 
 export const StepFour = () => {
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors, submitCount, isValid },
@@ -21,13 +25,20 @@ export const StepFour = () => {
 
   const submit: SubmitHandler<IStepFour> = (data) => {
     console.log("error", data);
+
+    return navigate("/step-five");
   };
 
   return (
     <Container>
-      <form className={styles.formBlock} onSubmit={handleSubmit(submit, error)}>
-        <Navigation />
-
+      <Form
+        error={error}
+        handleSubmit={handleSubmit}
+        isValid={isValid}
+        submit={submit}
+        submitCount={submitCount}
+        head={{ title: "Оплата", icon: coinIcon }}
+      >
         <div className={styles.inputsBlock}>
           <InputBlock
             errors={errors}
@@ -43,17 +54,7 @@ export const StepFour = () => {
             }}
           />
         </div>
-
-        <Button
-          type="submit"
-          variant="contained"
-          color="secondary"
-          size="large"
-          disabled={submitCount !== 0 && !isValid}
-        >
-          Далее
-        </Button>
-      </form>
+      </Form>
     </Container>
   );
 };

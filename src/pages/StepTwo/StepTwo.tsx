@@ -8,6 +8,8 @@ import { RadioBlock } from "../../components/UI/RadioBlock/RadioBlock";
 import { insuranceTypes, options } from "../../data/data";
 import { AnimatePresence, motion } from "framer-motion";
 import { IStepTwo } from "../../types/StepsInterfaces";
+import { Form } from "../../components/Form/Form";
+import { worldIcon } from "../../data/icontsSvg";
 
 const getValue = (value: string) =>
   value ? options.find((option) => option.value === value) : "";
@@ -40,12 +42,17 @@ export const StepTwo = () => {
   return (
     <>
       <Container>
-        <form
-          className={styles.formBlock}
-          onSubmit={handleSubmit(submit, error)}
+        <Form
+          error={error}
+          handleSubmit={handleSubmit}
+          isValid={isValid}
+          submit={submit}
+          submitCount={submitCount}
+          head={{
+            title: "Страна отправителя / страна получателя",
+            icon: worldIcon,
+          }}
         >
-          <Navigation />
-
           <div className={styles.formBlock__content}>
             <SelectItem
               control={control}
@@ -91,17 +98,7 @@ export const StepTwo = () => {
               </AnimatePresence>
             </div>
           </div>
-
-          <Button
-            type="submit"
-            variant="contained"
-            color="secondary"
-            size="large"
-            disabled={submitCount !== 0 && !isValid}
-          >
-            Далее
-          </Button>
-        </form>
+        </Form>
       </Container>
     </>
   );

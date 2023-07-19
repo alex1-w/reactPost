@@ -1,18 +1,13 @@
 import styles from "./StepFive.module.scss";
+import { useState } from "react";
 import { Container } from "../../components/Container/Container";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import { IStepFive } from "../../types/StepsInterfaces";
 import { Form } from "../../components/Form/Form";
+import { StyledRating, customIcons } from "./iconsArr";
+import { IconContainerProps, TextField } from "@mui/material";
 import { scoreIcon } from "../../data/icontsSvg";
- 
-import { styled } from "@mui/material/styles";
-import Rating, { IconContainerProps } from "@mui/material/Rating";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
-import SentimentSatisfiedIcon from "@mui/icons-material/SentimentSatisfied";
-import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined";
-import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
-import { useState } from "react";
+import { InputBlock } from "../../components/UI/InputBlock/InputBlock";
 
 export const StepFive = () => {
   const [rating, setRating] = useState<number | null>(5);
@@ -21,47 +16,17 @@ export const StepFive = () => {
   const {
     register,
     handleSubmit,
-    formState: { isValid, submitCount },
-  } = useForm();
+    formState: { isValid, submitCount, errors },
+  } = useForm({
+    mode: "onBlur",
+    reValidateMode: "onSubmit",
+  });
   const error: SubmitErrorHandler<IStepFive> = (data) => {
     console.log("error", data);
   };
 
   const submit: SubmitHandler<IStepFive> = (data) => {
     console.log("error", data);
-  };
-  const StyledRating = styled(Rating)(({ theme }) => ({
-    "& .MuiRating-iconEmpty .MuiSvgIcon-root": {
-      color: theme.palette.action.disabled,
-    },
-  }));
-
-  const customIcons: {
-    [index: string]: {
-      icon: React.ReactElement;
-      label: string;
-    };
-  } = {
-    1: {
-      icon: <SentimentVeryDissatisfiedIcon color="error" />,
-      label: "Very Dissatisfied",
-    },
-    2: {
-      icon: <SentimentDissatisfiedIcon color="error" />,
-      label: "Dissatisfied",
-    },
-    3: {
-      icon: <SentimentSatisfiedIcon color="warning" />,
-      label: "Neutral",
-    },
-    4: {
-      icon: <SentimentSatisfiedAltIcon color="success" />,
-      label: "Satisfied",
-    },
-    5: {
-      icon: <SentimentVerySatisfiedIcon color="success" />,
-      label: "Very Satisfied",
-    },
   };
 
   function IconContainer(props: IconContainerProps) {
@@ -79,18 +44,40 @@ export const StepFive = () => {
         submitCount={submitCount}
         head={{ title: "Отзыв", icon: scoreIcon }}
       >
-        <div>
-          <StyledRating
-            name="highlight-selected-only"
-            defaultValue={2}
-            IconContainerComponent={IconContainer}
-            getLabelText={(value: number) => customIcons[value].label}
-            highlightSelectedOnly
-            value={rating}
-            onChange={(event, newRating) => {
-              setRating(newRating);
+        <div className={styles.main}>
+          <InputBlock
+            errors={errors}
+            name="comment"
+            register={register}
+            rules={{
+              minLength: {
+                value: 30,
+                message: "минимальная длина - 30 символов",
+              },
+              maxLength: {
+                value: 100,
+                message: "максимальное значение - 100 символов",
+              },
             }}
+            size="medium"
+            type="text"
+            label="коммент"
+            multiline={{ multilineValue: true, rows: 4 }}
           />
+          <div>
+            <StyledRating
+              // {...register("rating")}
+              // name="highlight-selected-only"
+              // defaultValue={2}
+              IconContainerComponent={IconContainer}
+              getLabelText={(value: number) => customIcons[value].label}
+              highlightSelectedOnly
+              value={rating}
+              onChange={(event, newRating) => {
+                setRating(newRating);
+              }}
+            />
+          </div>
         </div>
       </Form>
     </Container>

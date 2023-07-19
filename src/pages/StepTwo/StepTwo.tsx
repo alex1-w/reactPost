@@ -42,14 +42,14 @@ export const StepTwo = () => {
   return (
     <>
       <Container>
-        <Form
+        <Form 
           error={error}
           handleSubmit={handleSubmit}
           isValid={isValid}
           submit={submit}
           submitCount={submitCount}
           head={{
-            title: "Страна отправителя / страна получателя",
+            title: "Путь",
             icon: worldIcon,
           }}
         >

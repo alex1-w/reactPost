@@ -14,6 +14,7 @@ interface IInputBlock {
   register: UseFormRegister<any>;
   errors: any;
   rules: RegisterOptions;
+  multiline?: { multilineValue: boolean; rows: number };
 }
 
 export const InputBlock: FC<IInputBlock> = ({
@@ -25,6 +26,7 @@ export const InputBlock: FC<IInputBlock> = ({
   type,
   label,
   sizeStyle,
+  multiline,
 }) => {
   return (
     <div
@@ -38,6 +40,8 @@ export const InputBlock: FC<IInputBlock> = ({
         })}
       >
         <TextField
+          multiline={multiline?.multilineValue}
+          rows={multiline?.rows}
           type={type}
           size={size}
           className={styles.main__inp}

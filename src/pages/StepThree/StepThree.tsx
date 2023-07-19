@@ -36,7 +36,7 @@ export const StepThree = () => {
         submitCount={submitCount}
         handleSubmit={handleSubmit}
         isValid={isValid}
-        head={{ title: "Габариты коробки", icon: packageIcon }}
+        head={{ title: "Габариты посылки", icon: packageIcon }}
       > 
         <div className={styles.inputsBlock}>
           <InputBlock

@@ -1,15 +1,15 @@
 import styles from "./StepThree.module.scss";
-import { Button } from "@mui/material";
 import { Container } from "../../components/Container/Container";
-import { Navigation } from "../../components/Navigation/Navigation";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import { IStepThree } from "../../types/StepsInterfaces";
 import { InputBlock } from "../../components/UI/InputBlock/InputBlock";
 import { useNavigate } from "react-router-dom";
-import { coinIcon, packageIcon } from "../../data/icontsSvg";
+import { packageIcon } from "../../data/icontsSvg";
 import { Form } from "../../components/Form/Form";
+import { useData } from "../../providers/DataContext";
 
 export const StepThree = () => {
+  const { data, setDataValues } = useData();
   const navigate = useNavigate();
 
   const {
@@ -24,9 +24,17 @@ export const StepThree = () => {
 
   const submit: SubmitHandler<IStepThree> = (data) => {
     console.log("error", data);
+    setDataValues({
+      packageWeight: data.weight,
+      packageheight: data.height,
+      packageWidth: data.width,
+      packageLength: data.length
 
+    });
+    
     return navigate("/step-four");
   };
+  console.log(data);
 
   return (
     <Container>
@@ -37,7 +45,7 @@ export const StepThree = () => {
         handleSubmit={handleSubmit}
         isValid={isValid}
         head={{ title: "Габариты посылки", icon: packageIcon }}
-      > 
+      >
         <div className={styles.inputsBlock}>
           <InputBlock
             errors={errors}
@@ -77,7 +85,7 @@ export const StepThree = () => {
           />
           <InputBlock
             errors={errors}
-            name="lenth"
+            name="length"
             register={register}
             rules={{
               required: { value: true, message: "required" },

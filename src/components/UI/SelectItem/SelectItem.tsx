@@ -43,7 +43,6 @@ export const SelectItem: FC<ISelectProps> = ({
       name={name}
       rules={rules}
       render={({ field: { name, value, onChange }, fieldState: { error } }) => (
-
         <div className={styles.main}>
           <ReactSelect
             onChange={(newValue) => {
@@ -59,14 +58,13 @@ export const SelectItem: FC<ISelectProps> = ({
               <motion.p
                 initial={{ opacity: 0, y: "-100", height: 0 }}
                 animate={{ opacity: 1, y: 0, height: "auto" }}
-                exit={{ height: 0, y: "-100", opacity:0 }}
+                exit={{ height: 0, y: "-100", opacity: 0 }}
               >
                 {errors[name]?.message}
               </motion.p>
             )}
           </AnimatePresence>
         </div>
-        
       )}
     />
   );

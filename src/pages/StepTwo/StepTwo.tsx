@@ -1,8 +1,7 @@
 import styles from "./StepTwo.module.scss";
-import { Button, Checkbox, FormControlLabel } from "@mui/material";
+import { Checkbox, FormControlLabel } from "@mui/material";
 import { Container } from "../../components/Container/Container";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
-import { Navigation } from "../../components/Navigation/Navigation";
 import { SelectItem } from "../../components/UI/SelectItem/SelectItem";
 import { RadioBlock } from "../../components/UI/RadioBlock/RadioBlock";
 import { insuranceTypes, options } from "../../data/data";
@@ -10,11 +9,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { IStepTwo } from "../../types/StepsInterfaces";
 import { Form } from "../../components/Form/Form";
 import { worldIcon } from "../../data/icontsSvg";
-
-const getValue = (value: string) =>
-  value ? options.find((option) => option.value === value) : "";
+import { useData } from "../../providers/DataContext";
+import { useNavigate } from "react-router-dom";
 
 export const StepTwo = () => {
+  const { setDataValues, data } = useData();
+  const navigation = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -31,18 +32,24 @@ export const StepTwo = () => {
     },
   });
   const isInsurance = watch("insurance");
+  // console.log(form);
 
   const error: SubmitErrorHandler<IStepTwo> = (errors) => {
     console.log("errors", errors);
   };
   const submit: SubmitHandler<IStepTwo> = (data) => {
-    console.log("submit", data);
+    setDataValues({
+      sendersCountry: data.sendersCountry,
+      receiverCountry: data.receiverCountry,
+    });
+    return navigation("/step-three");
   };
+  console.log(data);
 
   return (
     <>
       <Container>
-        <Form 
+        <Form
           error={error}
           handleSubmit={handleSubmit}
           isValid={isValid}

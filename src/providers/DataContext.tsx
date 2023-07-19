@@ -2,44 +2,46 @@ import { FC, createContext, useContext, useState } from "react";
 import { IPackageData } from "../types/stepOne.interface";
 
 type Data = { [key: string]: string | number }
+// type Data = { [key: string]: { [key: string]: string | number } };
 
 interface IDataContext {
-    data: Data
-    setDataValues: (newData: Data) => void
+  data: Data;
+  setDataValues: (newData: Data) => void;
 }
 
 export const DataContext = createContext<IDataContext>({
-    setDataValues: (_newData: Data) => { return null },
-    data: {}
-})
+  setDataValues: (_newData: Data) => {
+    return null;
+  },
+  data: {},
+});
 
-export const DataProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [data, setData] = useState({})
+export const DataProvider: FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [data, setData] = useState({});
 
-    const setDataValues = (newData: Data) => {
-        setData((prev) => ({
-            ...prev,
-            ...newData
-        }))
-        // console.log(data);
-    }
+  const setDataValues = (newData: Data) => {
+    setData((prev) => ({
+      ...prev,
+      ...newData,
+    }));
+    // console.log(data);
+  };
 
-    return (
-        <DataContext.Provider value={{ setDataValues, data }}>
-            {children}
-        </DataContext.Provider>
-    )
-}
+  return (
+    <DataContext.Provider value={{ setDataValues, data }}>
+      {children}
+    </DataContext.Provider>
+  );
+};
 
-export const useData = () => useContext(DataContext)
-
-
+export const useData = () => useContext(DataContext);
 
 // import { FC, createContext, useContext, useState } from "react";
 // import { IPackageData } from "../types/stepOne.interface";
 
 // // interface IDataContext extends IPackageData {
-
 
 // export const DataContext = createContext<IDataContext>({
 //     // fromWhom: {
@@ -75,4 +77,4 @@ export const useData = () => useContext(DataContext)
 //     )
 // }
 
-// export const useData = () => useContext(DataContext) 
+// export const useData = () => useContext(DataContext)

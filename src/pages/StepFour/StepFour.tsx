@@ -7,9 +7,12 @@ import { InputBlock } from "../../components/UI/InputBlock/InputBlock";
 import { useNavigate } from "react-router-dom";
 import { coinIcon } from "../../data/icontsSvg";
 import { Form } from "../../components/Form/Form";
+import { useData } from "../../providers/DataContext";
 
 export const StepFour = () => {
   const navigate = useNavigate();
+  const { data, setDataValues } = useData();
+
   const {
     register,
     formState: { errors, submitCount, isValid },
@@ -24,8 +27,10 @@ export const StepFour = () => {
   };
 
   const submit: SubmitHandler<IStepFour> = (data) => {
-    console.log("error", data);
-
+    console.log("submit", data);
+    setDataValues({
+      payCard: data.cardNumber
+    });
     return navigate("/step-five");
   };
 

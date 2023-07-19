@@ -32,7 +32,6 @@ interface IPassportType {
 }
 
 export interface IStepFive {
-
-  
+  comment: string;
+  rating: number |  string;
 }
-

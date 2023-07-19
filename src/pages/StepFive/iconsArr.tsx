@@ -40,3 +40,8 @@ export const StyledRating = styled(Rating)(({ theme }) => ({
     color: theme.palette.action.disabled,
   },
 }));
+
+export function IconContainer(props: IconContainerProps) {
+  const { value, ...other } = props;
+  return <span {...other}>{customIcons[value].icon}</span>;
+}

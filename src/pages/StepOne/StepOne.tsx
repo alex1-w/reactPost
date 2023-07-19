@@ -57,10 +57,17 @@ export const StepOne = () => {
   };
   const submit: SubmitHandler<IStepOne> = (data) => {
     console.log("submit", data.firstNameReceiver);
-
-    setDataValues({});
+    setDataValues({
+      firstNameSenders: data.firstNameSenders,
+      lastNameSenders: data.lastNameSenders,
+      phoneNumberSenders: data.phoneNumberSenders,
+      firstNameReceiver: data.firstNameReceiver,
+      lastNameReceiver: data.lastNameReceiver,
+      phoneNumberReceiver: data.phoneNumberReceiver,
+    });
     return navigation("/step-two");
   };
+  console.log(data);
 
   return (
     <>
@@ -71,8 +78,7 @@ export const StepOne = () => {
         isValid={isValid}
         submitCount={submitCount}
       >
-
-        <div className={styles.formBlock__item}>
+        <div className={styles.main}>
           <h3>От кого</h3>
 
           <InputBlock
@@ -104,7 +110,7 @@ export const StepOne = () => {
           />
         </div>
 
-        <div className={styles.formBlock__item}>
+        <div className={styles.main}>
           <h3>Кому</h3>
 
           <InputBlock
@@ -136,16 +142,6 @@ export const StepOne = () => {
             label="тел. номер отправителя"
           />
         </div>
-
-        {/* <Button
-          type="submit"
-          variant="contained"
-          color="secondary"
-          size="large"
-          disabled={submitCount !== 0 && !isValid}
-        >
-          Далее
-        </Button> */}
       </Form>
     </>
   );

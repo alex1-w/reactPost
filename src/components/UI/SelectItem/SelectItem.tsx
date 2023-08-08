@@ -1,22 +1,13 @@
 import styles from "./SelectItem.module.scss";
 import { FC } from "react";
-import {
-  Controller,
-  RegisterOptions,
-  SubmitHandler,
-  useForm,
-  Control,
-  FieldErrors,
-} from "react-hook-form";
+import { Control, Controller, RegisterOptions } from "react-hook-form";
 import ReactSelect from "react-select";
 import { IOption } from "../../../types/data.inrterface";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface ISelectProps {
-  //   control: Control;
+  // control: Control;
   control: any;
-  //   register?: UseFormRegister<>;
-  register?: any;
   name: string;
   rules: RegisterOptions;
   //   errors?: FieldErrors;
@@ -25,17 +16,9 @@ interface ISelectProps {
   options: any[];
 }
 
-export const SelectItem: FC<ISelectProps> = ({
-  control,
-  register,
-  name,
-  rules,
-  errors,
-  placeholder,
-  options,
-}) => {
-  const getValue = (value: string) =>
-    value ? options.find((option) => option.value === value) : "";
+export const SelectItem: FC<ISelectProps> = ({ control, name, rules, errors, placeholder, options, }) => {
+
+  const getValue = (value: string) => value ? options.find((option) => option.value === value) : "";
 
   return (
     <Controller

@@ -1,4 +1,5 @@
 import { arrowIcon } from "../../data/icontsSvg";
+import { useData } from "../../providers/DataContext";
 import styles from "./Navigation.module.scss";
 import { NavLink } from "react-router-dom";
 
@@ -26,8 +27,12 @@ const links = [
 ];
 
 export const Navigation = () => {
+  const { data } = useData()
+  // console.log(data);
+
   return (
     <nav className={styles.main}>
+
       <ul>
         {links.map((link) => (
           <li key={link.link}>
@@ -41,6 +46,7 @@ export const Navigation = () => {
           </li>
         ))}
       </ul>
+
     </nav>
   );
 };

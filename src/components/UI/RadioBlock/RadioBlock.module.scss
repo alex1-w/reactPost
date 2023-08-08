@@ -1,14 +1,24 @@
 .main {
   display: flex;
   gap: 10px;
+  flex-direction: row !important;
+  overflow: hidden;
+  height: 54px;
+  // border: 1px solid red;
+  // gap: 10px;
+  // padding: 5px;
+  // border-radius: 8px;
+  // height: 60px;
+  // overflow: hidden;
 }
 
 .radioBlock {
   display: flex;
-  align-items: center;
-  // gap: 10px;
-  //   border: 1px solid red;
+  background-color: #313f47;
+  border-radius: 5px;
+  padding: 5px 12px !important;
 }
+
 .radioGroup {
   display: flex;
 }

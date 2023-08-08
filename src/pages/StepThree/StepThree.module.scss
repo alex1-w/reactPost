@@ -1,15 +1,26 @@
 .inputsBlock {
-  padding: 40px;
+  // border: 1px solid red;
+
+  padding: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 @media screen and (max-width: 700px) {
   .inputsBlock {
-    align-self: center;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    border: 1px solid red;
+    row-gap: 40px;
+    row-gap: 80px;
+    margin: 0 auto;
+    align-self: center;
+    justify-items: center;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .inputsBlock {
+    row-gap: 30px;
   }
 }

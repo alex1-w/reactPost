@@ -11,12 +11,10 @@ import { Form } from "../../components/Form/Form";
 import { worldIcon } from "../../data/icontsSvg";
 
 export const StepOne = () => {
-  const { setDataValues, data } = useData();
+  const { setDataValues, data: newPackage } = useData();
   const navigation = useNavigate();
 
-  const fieldNameCheck = (field: string) => {
-    return Boolean(field.match(/[a-z]/i)) || "только латиница";
-  };
+  const fieldNameCheck = (field: string) => Boolean(field.match(/[a-z]/i)) || "только латиница"
 
   const rulesForNameInput = {
     validate: fieldNameCheck,
@@ -35,39 +33,40 @@ export const StepOne = () => {
     },
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid, submitCount },
-  } = useForm<IStepOne>({
-    mode: "onBlur",
-    reValidateMode: "onChange",
-    defaultValues: {
-      firstNameSenders: "",
-      lastNameSenders: "",
-      phoneNumberSenders: "",
-      firstNameReceiver: "",
-      lastNameReceiver: "",
-      phoneNumberReceiver: "",
-    },
-  });
-
-  const error: SubmitErrorHandler<IStepOne> = (data) => {
-    console.log("error", data);
-  };
-  const submit: SubmitHandler<IStepOne> = (data) => {
-    console.log("submit", data.firstNameReceiver);
-    setDataValues({
-      firstNameSenders: data.firstNameSenders,
-      lastNameSenders: data.lastNameSenders,
-      phoneNumberSenders: data.phoneNumberSenders,
-      firstNameReceiver: data.firstNameReceiver,
-      lastNameReceiver: data.lastNameReceiver,
-      phoneNumberReceiver: data.phoneNumberReceiver,
+  const { register, handleSubmit, formState: { errors, isValid, submitCount } } = useForm<IStepOne>(
+    {
+      mode: "onBlur",
+      reValidateMode: "onChange",
+      defaultValues: {
+        firstNameSenders: "smith",
+        lastNameSenders: "jhon",
+        phoneNumberSenders: '890030179193',
+        firstNameReceiver: "jhonson",
+        lastNameReceiver: "alex",
+        phoneNumberReceiver: '7903512935275',
+      },
     });
+
+  const error: SubmitErrorHandler<IStepOne> = (data) => console.log("error", data)
+
+  const submit: SubmitHandler<IStepOne> = (data) => {
+
+    setDataValues(
+      {
+        ...newPackage,
+        stepOne: {
+          firstNameReceiver: data.firstNameReceiver,
+          lastNameReceiver: data.lastNameReceiver,
+          firstNameSenders: data.firstNameSenders,
+          lastNameSenders: data.lastNameSenders,
+          phoneNumberReceiver: data.phoneNumberReceiver,
+          phoneNumberSenders: data.phoneNumberSenders,
+        }
+      }
+    );
+    console.log(newPackage);
     return navigation("/step-two");
   };
-  console.log(data);
 
   return (
     <>

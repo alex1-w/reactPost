@@ -1,3 +1,4 @@
+// import { IStepOne } from './StepsInterfaces';
 export interface IForm {
     name: string
     email: string
@@ -15,17 +16,15 @@ export interface IOption {
     label: string
 }
 
-
-
-export interface IDataContext {
-    fromWhom: {
-        address: { city: string, country: string, house: string, street: string },
-        person: { firstName: string, LastName: string},
-    },
-    toWhom: {
-        address: { city: string, country: string, house: string, street: string },
-        person: { firstName: string, LastName: string }
-    },
-    isSimply: boolean,
-    setData: (newData: any) => void
-}
+// export interface IDataContext {
+//     fromWhom: {
+//         address: { city: string, country: string, house: string, street: string },
+//         person: { firstName: string, LastName: string },
+//     },
+//     toWhom: {
+//         address: { city: string, country: string, house: string, street: string },
+//         person: { firstName: string, LastName: string }
+//     },
+//     isSimply: boolean,
+//     setData: (newData: any) => void
+// }

@@ -5,16 +5,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { DataProvider } from './providers/DataContext';
 import { BrowserRouter } from 'react-router-dom';
+import { OrderProvider } from './providers/OrdersContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <BrowserRouter>
-
-    <DataProvider>
-      <App />
-    </DataProvider>
+  
+    <OrderProvider>
+      <DataProvider>
+        <App />
+      </DataProvider>
+    </OrderProvider>
 
   </BrowserRouter>
 );

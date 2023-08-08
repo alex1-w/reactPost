@@ -1,6 +1,7 @@
 .main {
   display: flex;
   flex-direction: column;
+
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -40,6 +41,7 @@
       // border-bottom: 1px solid #979ea2;
     }
   }
+
   &__error {
     color: rgb(126, 0, 0);
     font-weight: 500;

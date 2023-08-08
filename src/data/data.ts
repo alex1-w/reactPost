@@ -19,17 +19,17 @@ export const options = [
 
 export const insuranceTypes = [
     {
-        name: 'simple',
+        value: 'simple',
         label: 'simple',
         price: 200,
     },
     {
-        name: 'standart',
+        value: 'standart',
         label: 'standart',
         price: 500,
     },
     {
-        name: 'pro',
+        value: 'pro',
         label: 'pro',
         price: 500,
     },

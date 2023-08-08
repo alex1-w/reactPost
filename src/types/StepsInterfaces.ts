@@ -33,5 +33,13 @@ interface IPassportType {
 
 export interface IStepFive {
   comment: string;
-  rating: number |  string;
+  rating: number | string;
+}
+
+export interface IData {
+  stepOne: IStepOne
+  stepTwo: IStepTwo
+  stepThree: IStepThree
+  stepFour: IStepFour
+  stepFive: IStepFive
 }

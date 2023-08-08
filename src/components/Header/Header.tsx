@@ -2,22 +2,17 @@ import styles from "./Header.module.scss";
 import { TextField, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useGeolocation } from "react-use";
+import { MiniCart } from "../MiniCart/MiniCart";
 
 export const Header = () => {
   // const loc = useGeolocation()
-  console.log(useGeolocation());
+  // console.log(useGeolocation());
 
   return (
+
     <header className={styles.header}>
-      {/* <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                sx={{ mr: 2 }}
-            >
-                <MenuIcon />
-            </IconButton> */}
+
+      <MiniCart />
 
       <Link to="/">
         <Typography
@@ -42,5 +37,6 @@ export const Header = () => {
         </button>
       </div>
     </header>
+    
   );
 };

@@ -1,0 +1,80 @@
+.main {
+    position: absolute;
+    top: 100%;
+    left: 4%;
+    width: 150px;
+    z-index: 1;
+
+    &__content {
+        overflow: hidden;
+        border-left: 3px solid #151b1e;
+        border-bottom: 3px solid #151b1e;
+        border-right: 3px solid #151b1e;
+        background-color: #1e272c;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        // padding: 3px 10px;
+    }
+
+
+    &__item {
+        padding: 2px 7px;
+        background-color: #3b4c56;
+        padding: 3px 5px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__noOrders {
+        margin: 0 auto;
+        padding: 3px;
+
+        p {
+            color: #4c616e;
+        }
+    }
+}
+
+.arrow {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 10px;
+    background-color: #3b4c56;
+    border: 2px solid #1e272c;
+    border-top: none;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    // border: 1px solid red;
+
+    svg {
+        display: flex;
+    }
+
+    & .arrowActive {
+        transform: rotate(180deg);
+    }
+}
+
+.arrowBlock {
+    width: 100%;
+    // border: 1px solid red;
+    display: flex;
+    position: relative;
+
+    &__newOrder {
+        display: none;
+        position: absolute;
+        top: 20%;
+        left: 10%;
+
+        // border: 1px solid red;
+        &.showNewOrder {
+            display: block;
+        }
+    }
+}

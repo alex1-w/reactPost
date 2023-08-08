@@ -1,0 +1,10 @@
+.main {
+    width: 250px;
+    height: 100px;
+    background-color: rgb(230, 230, 230);
+
+    &__head {
+        display: flex;
+        justify-content: space-around;
+    }
+}

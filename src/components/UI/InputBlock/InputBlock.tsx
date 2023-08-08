@@ -17,28 +17,11 @@ interface IInputBlock {
   multiline?: { multilineValue: boolean; rows: number };
 }
 
-export const InputBlock: FC<IInputBlock> = ({
-  errors,
-  name,
-  register,
-  rules,
-  size,
-  type,
-  label,
-  sizeStyle,
-  multiline,
-}) => {
+export const InputBlock: FC<IInputBlock> = ({ errors, name, register, rules, size, type, label, sizeStyle, multiline, }) => {
+
   return (
-    <div
-      className={cn(styles.main, {
-        [styles.sizeStyles]: sizeStyle === "кг" || sizeStyle === "см",
-      })}
-    >
-      <div
-        className={cn({
-          [styles.wrapper]: sizeStyle === "кг" || sizeStyle === "см",
-        })}
-      >
+    <div className={cn(styles.main, { [styles.sizeStyles]: sizeStyle === "кг" || sizeStyle === "см" })}>
+      <div className={cn({ [styles.wrapper]: sizeStyle === "кг" || sizeStyle === "см" })}>
         <TextField
           multiline={multiline?.multilineValue}
           rows={multiline?.rows}
@@ -48,7 +31,7 @@ export const InputBlock: FC<IInputBlock> = ({
           label={label}
           {...(register && register(name, { ...rules }))}
         />
-        {sizeStyle && <p className={styles.sizeStyle__unit}>{sizeStyle}</p>}
+        <p className={styles.sizeStyle__unit}>{sizeStyle}</p>
       </div>
 
       <AnimatePresence>

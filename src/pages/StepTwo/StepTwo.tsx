@@ -13,38 +13,36 @@ import { useData } from "../../providers/DataContext";
 import { useNavigate } from "react-router-dom";
 
 export const StepTwo = () => {
-  const { setDataValues, data } = useData();
+  const { setDataValues, data: newPackage } = useData();
   const navigation = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors, isValid, submitCount },
-    watch,
-  } = useForm<IStepTwo>({
-    mode: "onBlur",
-    defaultValues: {
-      sendersCountry: "",
-      receiverCountry: "",
-      insurance: false,
-      insuranceType: "",
-    },
-  });
+  const { register, handleSubmit, control, formState: { errors, isValid, submitCount }, watch, } = useForm<IStepTwo>(
+    {
+      mode: "onBlur",
+      defaultValues: {
+        sendersCountry: "",
+        receiverCountry: "",
+        insurance: false,
+        insuranceType: "",
+      },
+    });
   const isInsurance = watch("insurance");
-  // console.log(form);
 
-  const error: SubmitErrorHandler<IStepTwo> = (errors) => {
-    console.log("errors", errors);
-  };
+  const error: SubmitErrorHandler<IStepTwo> = (errors) => { };
+
   const submit: SubmitHandler<IStepTwo> = (data) => {
     setDataValues({
-      sendersCountry: data.sendersCountry,
-      receiverCountry: data.receiverCountry,
+      ...newPackage,
+      stepTwo: {
+        sendersCountry: data.sendersCountry,
+        receiverCountry: data.receiverCountry,
+        insurance: data.insurance,
+        insuranceType: data.insuranceType
+      }
     });
+    console.log(newPackage);
     return navigation("/step-three");
   };
-  console.log(data);
 
   return (
     <>
@@ -60,7 +58,8 @@ export const StepTwo = () => {
             icon: worldIcon,
           }}
         >
-          <div className={styles.formBlock__content}>
+          <div className={styles.mainContent}>
+
             <SelectItem
               control={control}
               errors={errors}
@@ -69,6 +68,7 @@ export const StepTwo = () => {
               placeholder="страна отправителя"
               options={options}
             />
+
             <SelectItem
               control={control}
               errors={errors}
@@ -80,8 +80,8 @@ export const StepTwo = () => {
 
             <div className={styles.insuranceBlock}>
               <FormControlLabel
-                className={styles.checkBox}
-                label="сложная посылка"
+                className={styles.insuranceBlock__checkBox}
+                label="Страховка"
                 control={
                   <Checkbox {...register("insurance")} name="insurance" />
                 }
@@ -95,7 +95,8 @@ export const StepTwo = () => {
                     exit={{ width: 0, opacity: 0 }}
                   >
                     <RadioBlock
-                      register={register}
+                      control={control}
+                      // register={register}
                       name="insuranceType"
                       label="расценки"
                       values={insuranceTypes}

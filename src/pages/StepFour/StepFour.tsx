@@ -11,26 +11,29 @@ import { useData } from "../../providers/DataContext";
 
 export const StepFour = () => {
   const navigate = useNavigate();
-  const { data, setDataValues } = useData();
+  const { data: newPackage, setDataValues } = useData();
 
-  const {
-    register,
-    formState: { errors, submitCount, isValid },
-    handleSubmit,
-  } = useForm<IStepFour>({
-    mode: "onBlur",
-    reValidateMode: "onChange",
-  });
+  const { register, formState: { errors, submitCount, isValid }, handleSubmit } = useForm<IStepFour>(
+    {
+      mode: "onBlur",
+      reValidateMode: "onChange",
+      defaultValues: {
+        cardNumber: 1111111111111111
+      }
+    });
 
-  const error: SubmitErrorHandler<IStepFour> = (data) => {
-    console.log("error", data);
-  };
+  const error: SubmitErrorHandler<IStepFour> = (data) => console.log("error", data);
 
   const submit: SubmitHandler<IStepFour> = (data) => {
-    console.log("submit", data);
+
     setDataValues({
-      payCard: data.cardNumber
+      ...newPackage,
+      stepFour: {
+        cardNumber: data.cardNumber,
+        passport: data.passport,
+      }
     });
+    console.log(newPackage);
     return navigate("/step-five");
   };
 

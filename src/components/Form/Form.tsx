@@ -1,9 +1,5 @@
 import styles from "./Form.module.scss";
-import {
-  SubmitErrorHandler,
-  SubmitHandler,
-  UseFormHandleSubmit,
-} from "react-hook-form";
+import { SubmitErrorHandler, SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
 import React, { FC } from "react";
 import { Button } from "@mui/material";
 import { Navigation } from "../Navigation/Navigation";
@@ -18,15 +14,9 @@ interface IFormProps {
   submitCount: number;
 }
 
-export const Form: FC<IFormProps> = ({
-  children,
-  head,
-  handleSubmit,
-  isValid,
-  submitCount,
-  error,
-  submit,
-}) => {
+export const Form: FC<IFormProps> = ({ children, head, handleSubmit, isValid, submitCount, error, submit, }) => {
+
+
   return (
     <form
       noValidate
@@ -49,7 +39,7 @@ export const Form: FC<IFormProps> = ({
         disabled={submitCount !== 0 && !isValid}
       >
         Далее
-      </Button>{" "}
+      </Button>
     </form>
   );
 };

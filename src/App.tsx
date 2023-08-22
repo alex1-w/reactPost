@@ -1,5 +1,5 @@
 import { Header } from "./components/Header/Header";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import { StepTwo } from "./pages/StepTwo/StepTwo";
 import { StepOne } from "./pages/StepOne/StepOne";
 import { Layout } from "./pages/Layout/Layout";
@@ -11,8 +11,9 @@ import { Packages } from "./pages/Packages/Packages";
 import { RequireAccess } from "./HOC/RequireAccess";
 
 function App() {
+
   return (
-    <>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
 
@@ -41,12 +42,12 @@ function App() {
               <StepFive />
             </RequireAccess>}
           />
-          
+
           <Route path="orders" element={<Packages />} />
-          {/* <Route path="*" element={<NotFoundPages />} /> */}
+          <Route path="*" element={<NotFoundPages />} />
         </Route>
       </Routes>
-    </>
+    </HashRouter>
   );
 }
 

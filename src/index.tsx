@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <HashRouter>
+  <React.StrictMode>
 
     <AccessProvider>
       <OrderProvider>
@@ -22,7 +22,7 @@ root.render(
       </OrderProvider>
     </AccessProvider>
 
-  </HashRouter>
+  </React.StrictMode>
 );
 
 reportWebVitals();

@@ -4,7 +4,7 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { DataProvider } from './providers/DataContext';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { OrderProvider } from './providers/OrdersContext';
 import AccessProvider from './providers/AccessProvider';
 
@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <BrowserRouter>
+  <HashRouter>
 
     <AccessProvider>
       <OrderProvider>
@@ -22,7 +22,7 @@ root.render(
       </OrderProvider>
     </AccessProvider>
 
-  </BrowserRouter>
+  </HashRouter>
 );
 
 reportWebVitals();

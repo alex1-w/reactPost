@@ -1,156 +1,128 @@
-import styles from './StepTwo.module.scss'
-import { Button, Checkbox, FormControlLabel } from "@mui/material"
-import { Container } from "../../components/Container/Container"
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { Navigation } from '../../components/Navigation/Navigation'
-import { SelectItem } from '../../components/UI/SelectItem/SelectItem'
-import { RadioBlock } from '../../components/UI/RadioBlock/RadioBlock'
-
-export const options = [
-    {
-        value: 'usa',
-        label: 'USA'
-    },
-    {
-        value: 'russia',
-        label: 'Russia'
-    },
-    {
-        value: 'japan',
-        label: 'Japan'
-    },
-    {
-        value: 'chine',
-        label: 'Chine'
-    },
-]
-
-const insuranceTypes = [
-    {
-        name: 'simple',
-        label: 'simple',
-        price: 200,
-    },
-    {
-        name: 'standart',
-        label: 'standart',
-        price: 500,
-    },
-    {
-        name: 'pro',
-        label: 'pro',
-        price: 500,
-    },
-]
-
-interface IStepTwo {
-    sendersCountry: string,
-    receiverCountry: string,
-    insurance: boolean
-    insuranceType?: 'simple' | 'standart' | 'pro'
-}
-const getValue = (value: string) => value ? options.find(option => option.value === value) : ''
+import styles from "./StepTwo.module.scss";
+import { Checkbox, FormControlLabel } from "@mui/material";
+import { Container } from "../../components/Container/Container";
+import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
+import { SelectItem } from "../../components/UI/SelectItem/SelectItem";
+import { RadioBlock } from "../../components/UI/RadioBlock/RadioBlock";
+import { insuranceTypes, options } from "../../data/data";
+import { AnimatePresence, motion } from "framer-motion";
+import { IStepTwo } from "../../types/StepsInterfaces";
+import { Form } from "../../components/Form/Form";
+import { worldIcon } from "../../data/icontsSvg";
+import { useData } from "../../providers/DataContext";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useAccessProvider } from "../../providers/AccessProvider";
 
 export const StepTwo = () => {
-    const { register, handleSubmit, control, formState: { errors }, watch } = useForm<IStepTwo>({
-        mode: 'onBlur',
-        defaultValues:
-        {
-            sendersCountry: '',
-            receiverCountry: '',
-            insurance: false,
-            // insuranceType: null
-        }
-    })
+  const { setDataValues, data: newPackage } = useData();
+  const { access, setAccess } = useAccessProvider()
+  const navigation = useNavigate();
 
 
-
-    const isInsurance = watch('insurance')
-    // console.log(watch());
-
-    // console.log(watch());
-    console.log('errors', errors);
-    const onSubmit: SubmitHandler<IStepTwo> = data => {
-
+  useEffect(() => {
+    if (!access.accessStepTwo) {
+      navigation(-1)
     }
-
-    return (
-        <>
-            <Container>
-
-                <form className={styles.formBlock} onSubmit={handleSubmit(onSubmit)}>
-                    <Navigation />
-
-                    <div className={styles.formBlock__content}>
-                        <SelectItem
-                            control={control}
-                            errors={errors}
-                            name='sendersCountry'
-                            rules={{ required: { message: 'поле обязательно', value: true } }}
-                            placeholder='страна отправителя'
-                            options={options}
-                        />
-                        <SelectItem
-                            control={control}
-                            errors={errors}
-                            name='receiverCountry'
-                            rules={{ required: { message: 'поле обязательно', value: true } }}
-                            placeholder='страна отправителя'
-                            options={options}
-                        />
+  }, [access])
 
 
-                        {/* <Controller
-                            control={control}
-                            rules={{ required: { message: 'поле обязательно', value: true } }}
-                            name='receiverCountry'
-                            render={({ field: { value, onChange }, fieldState: { error } }) => (
-                                <>
-                                    <ReactSelect
-                                        onChange={(newValue) => { onChange((newValue as IOption).value) }}
-                                        value={getValue(value)}
-                                        options={options}
-                                        placeholder='страна получателя'
-                                    />
-                                    {error && <p>{error?.message}</p>}
-                                </>)}
-                        /> */}
+  const { register, handleSubmit, control, formState: { errors, isValid, submitCount }, watch, } = useForm<IStepTwo>(
+    {
+      mode: "onBlur",
+      defaultValues: {
+        sendersCountry: "",
+        receiverCountry: "",
+        insurance: false,
+        insuranceType: "",
+      },
+    });
 
-                        <div className={styles.insuranceBlock}>
-                            <FormControlLabel
-                                className={styles.checkBox}
-                                label='сложная посылка'
-                                control={<Checkbox {...register('insurance')} name='insurance' />}
-                            />
-                            {isInsurance &&
-                                <RadioBlock name='расценки' values={insuranceTypes} />
-                            }
-                        </div>
+  const isInsurance = watch("insurance");
 
-                        {/* 
-                        <FormControl>
-                            <FormLabel>Colors</FormLabel>
-                            <RadioGroup defaultValue="medium" name="radio-buttons-group" row={true}>
-                                <FormControlLabel control={<Radio />} value="primary" label="Primary" color="primary" />
-                                <FormControlLabel control={<Radio />} value="danger" label="Danger" color="danger" />
-                                <FormControlLabel control={<Radio />} value="info" label="Info" color="info" />
-                            </ RadioGroup >
-                        </FormControl> */}
-                    </div>
+  const error: SubmitErrorHandler<IStepTwo> = (errors) => { };
 
-                    <Button
-                        type='submit'
-                        variant='contained'
-                        color='secondary'
-                        size='large'
-                    // disabled={submitCount !== 0 && !isValid}
-                    >
-                        Далее
-                    </Button>
-                </form>
+  const submit: SubmitHandler<IStepTwo> = (data) => {
+    setDataValues({
+      ...newPackage,
+      stepTwo: {
+        sendersCountry: data.sendersCountry,
+        receiverCountry: data.receiverCountry,
+        insurance: data.insurance,
+        insuranceType: data.insuranceType
+      }
+    });
 
-            </Container >
+    setAccess({ ...access, accessStepThree: true })
+    // console.log(access);
 
-        </>
-    )
-}
+    return navigation("/step-three");
+  };
+
+  return (
+    <>
+      <Container>
+        <Form
+          error={error}
+          handleSubmit={handleSubmit}
+          isValid={isValid}
+          submit={submit}
+          submitCount={submitCount}
+          head={{
+            title: "Путь",
+            icon: worldIcon,
+          }}
+        >
+          <div className={styles.mainContent}>
+
+            <SelectItem
+              control={control}
+              errors={errors}
+              name="sendersCountry"
+              rules={{ required: { message: "поле обязательно", value: true } }}
+              placeholder="страна отправителя"
+              options={options}
+            />
+
+            <SelectItem
+              control={control}
+              errors={errors}
+              name="receiverCountry"
+              rules={{ required: { message: "поле обязательно", value: true } }}
+              placeholder="страна отправителя"
+              options={options}
+            />
+
+            <div className={styles.insuranceBlock}>
+              <FormControlLabel
+                className={styles.insuranceBlock__checkBox}
+                label="Страховка"
+                control={
+                  <Checkbox {...register("insurance")} name="insurance" />
+                }
+              />
+
+              <AnimatePresence>
+                {isInsurance && (
+                  <motion.div
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: "auto", opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                  >
+                    <RadioBlock
+                      control={control}
+                      // register={register}
+                      name="insuranceType"
+                      label="расценки"
+                      values={insuranceTypes}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+        </Form>
+      </Container>
+    </>
+  );
+};

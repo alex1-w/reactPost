@@ -1,39 +1,43 @@
-import styles from './Header.module.scss'
-import { IconButton, TextField, Toolbar, Typography, makeStyles, styled } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
-
+import styles from "./Header.module.scss";
+import { TextField, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { useGeolocation } from "react-use";
+import { MiniCart } from "../MiniCart/MiniCart";
 
 export const Header = () => {
-    
+  // const loc = useGeolocation()
+  // console.log(useGeolocation());
 
-    return (
-        <header className={styles.header}>
-            {/* <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                sx={{ mr: 2 }}
-            >
-                <MenuIcon />
-            </IconButton> */}
+  return (
 
-            <Link to='/'>
-                <Typography
-                    variant="h4"
-                    noWrap
-                    component="div"
-                    sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                >
-                    PACKAGE
-                </Typography>
-            </Link>
+    <header className={styles.header}>
 
-            <div className={styles.userBlock}>
-                <TextField type="text" size='small' placeholder='Search...' className={styles.userBlock__inp} />
-                <button><p>LOGIN</p></button>
-            </div>
-        </header>
-    )
-}
+      <MiniCart />
+
+      <Link to="/">
+        {/* <Typography
+          variant="h4"
+          noWrap
+          component="div"
+          sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+        >
+          PACKAGE
+        </Typography> */}
+        <h1>PACKAGE</h1>
+      </Link>
+
+      <div className={styles.userBlock}>
+        {/* <TextField
+          type="text"
+          size="small"
+          placeholder="Search..."
+          className={styles.userBlock__inp}
+        /> */}
+        <button>
+          <p>LOGIN</p>
+        </button>
+      </div>
+    </header>
+
+  );
+};

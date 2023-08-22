@@ -1,0 +1,36 @@
+.wrapper {
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    // border: 1px solid red;
+    // width: 134px;
+}
+
+.main {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    &__inp {
+        border: 1px solid var(--secondary-color) !important;
+        background-color: #546874;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    &__unit {
+        color: var(--primary-color);
+        font-size: 19px;
+    }
+
+    &__error {
+        color: rgb(126, 0, 0);
+        font-weight: 500;
+    }
+}

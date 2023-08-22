@@ -1,45 +1,53 @@
-import styles from './InputBlock.module.scss'
-import { TextField } from "@mui/material"
-import { FC } from "react"
-import { RegisterOptions, UseFormRegister } from "react-hook-form"
-import { AnimatePresence, motion } from 'framer-motion'
+import styles from "./InputBlock.module.scss";
+import { TextField } from "@mui/material";
+import { FC } from "react";
+import { RegisterOptions, UseFormRegister } from "react-hook-form";
+import { AnimatePresence, motion } from "framer-motion";
+import cn from "classnames";
 
 interface IInputBlock {
-    placeholder?: string
-    name: string,
-    label?: string
-    size: 'small' | 'medium'
-    type: 'number' | 'text' | 'password'
-    register: UseFormRegister<any>
-    errors: any
-    rules: RegisterOptions
+  sizeStyle?: "кг" | "см";
+  name: string;
+  label?: string;
+  size: "small" | "medium";
+  type: "number" | "text" | "password";
+  register: UseFormRegister<any>;
+  errors: any;
+  rules: RegisterOptions;
+  multiline?: { multilineValue: boolean; rows: number };
 }
 
-export const InputBlock: FC<IInputBlock> = ({ errors, name, placeholder, register, rules, size, type, label }) => {
+export const InputBlock: FC<IInputBlock> = ({ errors, name, register, rules, size, type, label, sizeStyle, multiline, }) => {
 
-    return (
+  return (
+    <div className={cn(styles.main, { [styles.sizeStyles]: sizeStyle === "кг" || sizeStyle === "см" })}>
 
-        <div className={styles.main}>
-            <TextField
-                type={type}
-                size={size}
-                className={styles.inp}
-                label={label}
-                {...(register &&
-                    register(name, { ...rules }))}
-            />
+      <div className={cn({ [styles.wrapper]: sizeStyle === "кг" || sizeStyle === "см" })}>
+        <TextField
+          multiline={multiline?.multilineValue}
+          rows={multiline?.rows}
+          type={type}
+          size={size}
+          className={styles.main__inp}
+          label={label}
+          {...(register && register(name, { ...rules }))}
+        />
+        <p className={styles.sizeStyle__unit}>{sizeStyle}</p>
+      </div>
 
-            <AnimatePresence>
-                {errors[name] &&
-                    <motion.p
-                        initial={{ height: 0, y: '-100' }}
-                        animate={{ height: 'auto', y: 0 }}
-                        exit={{ height: 0, y: '-100' }}
-                    >
-                        {errors[name].message}
-                    </motion.p>}
-            </AnimatePresence>
-
-        </div>
-    )
-}
+      <AnimatePresence>
+        {errors[name] && (
+          <motion.p
+            className={styles.main__error}
+            initial={{ height: 0, y: "-100", opacity: 0 }}
+            animate={{ height: "auto", y: 0, opacity: 1 }}
+            exit={{ height: 0, y: "-100", opacity: 0 }}
+          >
+            {errors[name].message}
+          </motion.p>
+        )}
+      </AnimatePresence>
+      
+    </div>
+  );
+};

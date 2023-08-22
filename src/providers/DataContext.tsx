@@ -1,78 +1,29 @@
-import { FC, createContext, useContext, useState } from "react";
-import { IPackageData } from "../types/stepOne.interface";
+import { FC, createContext, useContext, useEffect, useState } from "react";
+import { IData, IStepFive, IStepFour, IStepOne, IStepThree, IStepTwo } from "../types/StepsInterfaces";
 
-type Data = { [key: string]: string | number }
+// type DataVariant = IStepOne | IStepTwo | IStepThree | IStepFour | IStepFive
 
 interface IDataContext {
-    data: Data
-    setDataValues: (newData: Data) => void
+  data: IData;
+  setDataValues: (newData: IData) => void;
 }
 
 export const DataContext = createContext<IDataContext>({
-    setDataValues: (_newData: Data) => { return null },
-    data: {}
-})
+  data: {} as IData,
+  setDataValues: (_newData: IData) => { return null },
+});
 
-export const DataProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [data, setData] = useState({})
+export const DataProvider: FC<{ children: React.ReactNode }> = ({ children, }) => {
 
-    const setDataValues = (newData: Data) => {
-        setData((prev) => ({
-            ...prev,
-            ...newData
-        }))
-        // console.log(data);
-    }
-
-    return (
-        <DataContext.Provider value={{ setDataValues, data }}>
-            {children}
-        </DataContext.Provider>
-    )
-}
-
-export const useData = () => useContext(DataContext)
+  const [data, setData] = useState<IData>({} as IData);
 
 
 
-// import { FC, createContext, useContext, useState } from "react";
-// import { IPackageData } from "../types/stepOne.interface";
+  return (
+    <DataContext.Provider value={{ setDataValues: setData, data, }}>
+      {children}
+    </DataContext.Provider>
+  );
+};
 
-// // interface IDataContext extends IPackageData {
-
-
-// export const DataContext = createContext<IDataContext>({
-//     // fromWhom: {
-//     //     address: { city: '', country: '', house: '', street: '' },
-//     //     person: { firstName: '', LastName: '' },
-//     // },
-//     // toWhom: {
-//     //     address: { city: '', country: '', house: '', street: '' },
-//     //     person: { firstName: '', LastName: '' }
-//     // },
-//     // isSimply: false,
-//     setData: (newData) => { return null }
-// })
-
-// export const DataProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
-
-//     const [data, setData] = useState({})
-
-//     const setDataValues = (newData: any) => {
-//         setData({
-//             ...prev => newData
-//         })
-//         // setData((prev) => ({
-//         //     ...prev,
-//         //     ...newData
-//         // }))
-//     }
-
-//     return (
-//         <DataContext.Provider value={{ setData }}>
-//             {children}
-//         </DataContext.Provider>
-//     )
-// }
-
-// export const useData = () => useContext(DataContext) 
+export const useData = () => useContext(DataContext);

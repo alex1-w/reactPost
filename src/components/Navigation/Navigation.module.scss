@@ -1,40 +1,98 @@
 .main {
-    padding: 10px;
-    margin: 0 auto;
-    width: 90%;
-    max-width: 700px;
+  padding: 10px;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 700px;
 
-    // border: 1px solid red;
-    ul {
+  // border: 1px solid red;
+  ul {
+    display: flex;
+    justify-content: space-around;
+
+    li {
+      // border-top: 1px solid red;
+      display: flex;
+      align-items: center;
+      transition: scale 0.2s;
+
+      &:hover {
+        transition: scale 0.2s;
+        scale: 1.2;
+      }
+
+      a {
         display: flex;
-        justify-content: space-around;
+        gap: 10px;
+        align-items: center;
 
-        li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            a {
-                p {
-                    color: rgba(255, 255, 255, 0.309);
-                }
-            }
-
-            &:nth-child(5) {
-                svg {
-                    display: none;
-                }
-            }
+        p {
+          color: rgba(255, 255, 255, 0.309);
         }
+      }
+
+      &:nth-child(5) {
+        svg {
+          display: none;
+        }
+      }
     }
+  }
 }
 
 .linkActive {
-    padding: 6px;
-    cursor: pointer;
-    border: 1px solid #979ea2;
+  padding: 6px;
+  cursor: pointer;
+  border: 1px solid #979ea2;
 
-    p {
-        color: white !important;
+  p {
+    color: white !important;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .main {
+    width: 97%;
+    padding: 10px 0;
+
+    ul {
+      li {
+        a {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+
+          p {
+            color: rgba(255, 255, 255, 0.309);
+          }
+        }
+      }
     }
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  .main {
+    width: 97%;
+    padding: 10px 0;
+
+    ul {
+      li {
+        a {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          
+          svg{
+            height: 0.8em;
+          }
+
+          p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.309);
+          }
+        }
+      }
+    }
+  }
 }

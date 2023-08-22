@@ -1,40 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
-
-body {
-  // background: black;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #28333a;
-
-}
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+:root {
+  --primary-color: #546874;
+  --primary-bg: #3b4c56;
+  --secondary-color: #979ea2;
+  --primary-font-size-heading: 28px;
+  --primary-font-size-text: 16px;
+  --mobile-font-size-text: 13px;
+  --mobile-font-size-heading-h3: 20px;
+  // --mobile-font-size-heading-h3: 20px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #28333a;
+  // --prim
+  @media screen and (max-width: 1000px) {
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+}
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 p {
+  // font-size: 22px;
   margin-block-start: 0;
   margin-block-end: 0;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-style: normal;
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 ol,
 ul {
-  list-style: none
+  list-style: none;
 }
 
 a {
@@ -54,6 +69,7 @@ h3,
 h4,
 h5,
 h6 {
+  // cursor: context-menu;
   text-align: center;
   font-style: normal;
   display: block;
@@ -61,7 +77,33 @@ h6 {
   margin-block-end: 0;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
+  color: var(--secondary-color);
+}
+h1 {
+  font-size: var(--primary-font-size-heading);
+}
+h3 {
+  font-size: var(--primary-font-size-heading);
+}
+
+// p {
+//   font-size: var(--primary-font-size-text);
+// }
+
+@media screen and (max-width: 800px) {
+  h3 {
+    font-size: var(--mobile-font-size-heading-h3);
+  }
+
+  p {
+    font-size: var(--mobile-font-size-text);
+  }
+}
+
+svg {
+  fill: var(--secondary-color);
+  height: 1.3em;
 }
 
 ul {
@@ -91,16 +133,12 @@ a:focus,
 a:active {
   outline: none;
 }
+a:visited,
+a:hover {
+  text-decoration: none;
+}
 
 a {
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
 }

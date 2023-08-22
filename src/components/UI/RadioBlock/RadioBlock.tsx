@@ -1,37 +1,47 @@
-import { FC } from 'react'
-import styles from './RadioBlock.module.scss'
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material"
+import styles from "./RadioBlock.module.scss";
+import { FC } from "react";
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
+import { Controller } from "react-hook-form";
 
 interface IRadioBlockProps {
-    name: string
-    values: any[]
+  label: string;
+  values: any[];
+  register?: any;
+  name: string;
+  control: any
 }
 
-export const RadioBlock: FC<IRadioBlockProps> = ({ name, values }) => {
+export const RadioBlock: FC<IRadioBlockProps> = ({
+  label,
+  values,
+  register,
+  name,
+  control
+}) => {
+  return (
 
+    <FormControl component="fieldset">
 
-    return (
-        <>
-            <FormControl>
-                <FormLabel>{name}</FormLabel>
+      <Controller
+        rules={{ required: true }}
+        control={control}
+        name={name}
+        render={({ field }) => (
 
-                <RadioGroup>
-                    {values.map(item => (
-                        <div className={styles.insuranceBlock__item}>
-                            <FormControlLabel
-                                key={item.name}
-                                control={<Radio name={item.name} />}
-                                value={item.name}
-                                label={item.label}
-                                color="primary"
-                            />
-                            <span>{item.price}</span>
-                        </div>
-                    ))}
+          <RadioGroup {...field} className={styles.main}>
 
-                </RadioGroup>
-
-            </FormControl>
-        </>
-    )
-}
+            {values.map(item => (
+              <div className={styles.radioBlock}>
+                <FormControlLabel
+                  // className={styles.radioGroup}
+                  value={item.value}
+                  control={<Radio />}
+                  label={item.label}
+                />
+              </div>
+            ))}
+          </RadioGroup>)}
+      />
+    </FormControl>
+  );
+};

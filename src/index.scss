@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
 }
+
 :root {
   --primary-color: #546874;
   --primary-bg: #3b4c56;
@@ -24,6 +25,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #28333a;
+
   // --prim
   @media screen and (max-width: 1000px) {
     &::-webkit-scrollbar {
@@ -57,6 +59,10 @@ a {
   text-decoration: none;
 }
 
+input {
+  color: #283036 !important;
+}
+
 :-webkit-any(article, aside, nav, section) h1 {
   font-size: 1.5em;
   margin-block-start: 0;
@@ -69,7 +75,6 @@ h3,
 h4,
 h5,
 h6 {
-  // cursor: context-menu;
   text-align: center;
   font-style: normal;
   display: block;
@@ -80,9 +85,11 @@ h6 {
   font-family: "Rubik", sans-serif;
   color: var(--secondary-color);
 }
+
 h1 {
   font-size: var(--primary-font-size-heading);
 }
+
 h3 {
   font-size: var(--primary-font-size-heading);
 }
@@ -92,13 +99,13 @@ h3 {
 // }
 
 @media screen and (max-width: 800px) {
-  h3 {
-    font-size: var(--mobile-font-size-heading-h3);
-  }
+  // h3 {
+  //   font-size: var(--mobile-font-size-heading-h3);
+  // }
 
-  p {
-    font-size: var(--mobile-font-size-text);
-  }
+  // p {
+  //   font-size: var(--mobile-font-size-text);
+  // }
 }
 
 svg {
@@ -133,6 +140,7 @@ a:focus,
 a:active {
   outline: none;
 }
+
 a:visited,
 a:hover {
   text-decoration: none;

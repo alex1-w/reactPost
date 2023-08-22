@@ -41,12 +41,12 @@ export const StepOne = () => {
       mode: "onBlur",
       reValidateMode: "onChange",
       defaultValues: {
-        firstNameSenders: "dddddd",
-        lastNameSenders: "dddddd",
-        phoneNumberSenders: '333333333333',
-        firstNameReceiver: "fffff",
-        lastNameReceiver: "ffffff",
-        phoneNumberReceiver: '33333333333',
+        firstNameSenders: "",
+        lastNameSenders: "",
+        phoneNumberSenders: "",
+        firstNameReceiver: "",
+        lastNameReceiver: "",
+        phoneNumberReceiver: "",
       },
     });
 
@@ -75,79 +75,78 @@ export const StepOne = () => {
 
 
   return (
-    <>
-      <Form
-        error={error}
-        submit={submit}
-        handleSubmit={handleSubmit}
-        isValid={isValid}
-        submitCount={submitCount}
-      >
-        <div className={styles.main}>
-          <h3>От кого</h3>
+    <Form error={error} submit={submit} handleSubmit={handleSubmit} isValid={isValid} submitCount={submitCount}>
 
-          <InputBlock
-            errors={errors}
-            name="firstNameSenders"
-            register={register}
-            rules={rulesForNameInput}
-            size="medium"
-            type="text"
-            label="Имя отправителя"
-          />
-          <InputBlock
-            errors={errors}
-            name="lastNameSenders"
-            register={register}
-            rules={rulesForNameInput}
-            size="medium"
-            type="text"
-            label="Имя отправителя"
-          />
-          <InputBlock
-            errors={errors}
-            name="phoneNumberSenders"
-            register={register}
-            rules={rulesForTelInput}
-            size="medium"
-            type="number"
-            label="тел. номер отправителя"
-          />
-        </div>
+      <div className={styles.main}>
+        <h3>От кого</h3>
 
-        <div className={styles.main}>
-          <h3>Кому</h3>
+        <InputBlock
+          errors={errors}
+          name="firstNameSenders"
+          register={register}
+          rules={rulesForNameInput}
+          size="medium"
+          type="text"
+          label="Имя отправителя"
+        />
 
-          <InputBlock
-            errors={errors}
-            name="firstNameReceiver"
-            register={register}
-            rules={rulesForNameInput}
-            size="medium"
-            type="text"
-            label="Имя получателя"
-          />
+        <InputBlock
+          errors={errors}
+          name="lastNameSenders"
+          register={register}
+          rules={rulesForNameInput}
+          size="medium"
+          type="text"
+          label="Имя отправителя"
+        />
 
-          <InputBlock
-            errors={errors}
-            name="lastNameReceiver"
-            register={register}
-            rules={rulesForNameInput}
-            size="medium"
-            type="text"
-            label="Фамилия получателя"
-          />
-          <InputBlock
-            errors={errors}
-            name="phoneNumberReceiver"
-            register={register}
-            rules={rulesForTelInput}
-            size="medium"
-            type="number"
-            label="тел. номер отправителя"
-          />
-        </div>
-      </Form>
-    </>
+        <InputBlock
+          errors={errors}
+          name="phoneNumberSenders"
+          register={register}
+          rules={rulesForTelInput}
+          size="medium"
+          type="number"
+          label="тел. номер отправителя"
+        />
+
+      </div>
+
+      <div className={styles.main}>
+        <h3>Кому</h3>
+
+        <InputBlock
+          errors={errors}
+          name="firstNameReceiver"
+          register={register}
+          rules={rulesForNameInput}
+          size="medium"
+          type="text"
+          label="Имя получателя"
+        />
+
+        <InputBlock
+          errors={errors}
+          name="lastNameReceiver"
+          register={register}
+          rules={rulesForNameInput}
+          size="medium"
+          type="text"
+          label="Фамилия получателя"
+        />
+
+        <InputBlock
+          errors={errors}
+          name="phoneNumberReceiver"
+          register={register}
+          rules={rulesForTelInput}
+          size="medium"
+          type="number"
+          label="тел. номер отправителя"
+        />
+
+      </div>
+
+    </Form>
   );
 };

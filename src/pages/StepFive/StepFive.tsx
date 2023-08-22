@@ -1,5 +1,5 @@
 import styles from "./StepFive.module.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Container } from "../../components/Container/Container";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import { IStepFive } from "../../types/StepsInterfaces";
@@ -17,7 +17,7 @@ export const StepFive = () => {
   const { data: newPackage, setDataValues } = useData();
   const { access, setAccess } = useAccessProvider()
 
-  const { addOrders, orders } = useOrderContext()
+  const { addOrders } = useOrderContext()
   const [rating, setRating] = useState<any>();
 
   // const { width, height } = useWindowSize();
@@ -54,7 +54,6 @@ export const StepFive = () => {
     setAccess({ ...access, accessStepFive: true })
   };
 
-  console.log(access);
 
   return (
     <Container>
@@ -66,6 +65,7 @@ export const StepFive = () => {
         submitCount={submitCount}
         head={{ title: "Отзыв", icon: scoreIcon }}
       >
+
         <div className={styles.main}>
           <InputBlock
             errors={errors}
@@ -83,7 +83,7 @@ export const StepFive = () => {
             }}
             size="medium"
             type="text"
-            label="коммент"
+            label="комментарий к заказу"
             multiline={{ multilineValue: true, rows: 4 }}
           />
           <div>
@@ -98,6 +98,7 @@ export const StepFive = () => {
             />
           </div>
         </div>
+
       </Form>
     </Container>
   );

@@ -16,6 +16,7 @@ export const MiniCart = () => {
 
     const { orders } = useOrderContext()
     const [showMiniCart, setShowMiniCart] = useState<boolean>(false)
+
     const arrowRef = useRef<HTMLDivElement>(null)
     const newOrderRef = useRef<HTMLDivElement>(null)
 
@@ -24,12 +25,18 @@ export const MiniCart = () => {
         setShowMiniCart(!showMiniCart)
     }
 
+    const closeCart = () => setTimeout(() => {
+        setShowMiniCart(false)
+        arrowRef?.current?.classList.remove(styles.arrowActive)
+    }, 2000)
+
     const showNewOrderIcon = () => {
         setTimeout(() => newOrderRef?.current?.classList.add(styles.showNewOrder), 500)
         setTimeout(() => newOrderRef?.current?.classList.remove(styles.showNewOrder), 1000)
         setTimeout(() => newOrderRef?.current?.classList.add(styles.showNewOrder), 1500)
         setTimeout(() => newOrderRef?.current?.classList.remove(styles.showNewOrder), 2000)
     }
+
 
     useEffect(() => {
         if (data.stepFive) { return showNewOrderIcon() }
@@ -42,6 +49,7 @@ export const MiniCart = () => {
                 className={styles.main__content}
                 initial={{ height: 0, overflow: 'hidden' }}
                 animate={showMiniCart ? { height: 'fit-content' } : { height: 0 }}
+                onMouseLeave={closeCart}
             >
                 {orders.length ? orders.map((order: IData) => (
                     <Link

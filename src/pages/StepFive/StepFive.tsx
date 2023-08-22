@@ -10,10 +10,13 @@ import { InputBlock } from "../../components/UI/InputBlock/InputBlock";
 import { useData } from "../../providers/DataContext";
 import useWindowSize from "react-use/lib/useWindowSize";
 import { useOrderContext } from "../../providers/OrdersContext";
+import { useAccessProvider } from "../../providers/AccessProvider";
 
 export const StepFive = () => {
 
   const { data: newPackage, setDataValues } = useData();
+  const { access, setAccess } = useAccessProvider()
+
   const { addOrders, orders } = useOrderContext()
   const [rating, setRating] = useState<any>();
 
@@ -31,7 +34,7 @@ export const StepFive = () => {
       mode: "onBlur",
       reValidateMode: "onSubmit",
       defaultValues: {
-        comment: "все заебок",
+        comment: "",
       },
     });
 
@@ -44,15 +47,14 @@ export const StepFive = () => {
       stepFive: {
         comment: data.comment,
         rating: rating,
-      },
-    }
-    );
+      }
+    });
 
-    // console.log(newPackage);
     addOrders(newPackage)
-    console.log(orders);
-
+    setAccess({ ...access, accessStepFive: true })
   };
+
+  console.log(access);
 
   return (
     <Container>

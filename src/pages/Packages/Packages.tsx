@@ -14,15 +14,19 @@ export const Packages = () => {
             <div className={styles.main}>
 
 
-                {orders.map((order: IData) => (
+                {orders.length ? orders.map((order: IData) => (
                     <PackageItem
                         stepFive={order.stepFive}
                         stepFour={order.stepFour}
                         stepThree={order.stepThree}
                         stepOne={order.stepOne}
-                        stepTwo={order.stepTwo} 
+                        stepTwo={order.stepTwo}
                     />
-                ))}
+                )) :
+
+                    <h3>пока пусто</h3>
+                }
+
             </div>
 
         </Container>

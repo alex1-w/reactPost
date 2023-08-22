@@ -21,6 +21,7 @@ export const InputBlock: FC<IInputBlock> = ({ errors, name, register, rules, siz
 
   return (
     <div className={cn(styles.main, { [styles.sizeStyles]: sizeStyle === "кг" || sizeStyle === "см" })}>
+
       <div className={cn({ [styles.wrapper]: sizeStyle === "кг" || sizeStyle === "см" })}>
         <TextField
           multiline={multiline?.multilineValue}
@@ -46,6 +47,7 @@ export const InputBlock: FC<IInputBlock> = ({ errors, name, register, rules, siz
           </motion.p>
         )}
       </AnimatePresence>
+      
     </div>
   );
 };

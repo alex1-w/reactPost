@@ -15,28 +15,29 @@ export const Header = () => {
       <MiniCart />
 
       <Link to="/">
-        <Typography
+        {/* <Typography
           variant="h4"
           noWrap
           component="div"
           sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
         >
           PACKAGE
-        </Typography>
+        </Typography> */}
+        <h1>PACKAGE</h1>
       </Link>
 
       <div className={styles.userBlock}>
-        <TextField
+        {/* <TextField
           type="text"
           size="small"
           placeholder="Search..."
           className={styles.userBlock__inp}
-        />
+        /> */}
         <button>
           <p>LOGIN</p>
         </button>
       </div>
     </header>
-    
+
   );
 };

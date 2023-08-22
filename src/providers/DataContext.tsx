@@ -9,14 +9,14 @@ interface IDataContext {
 }
 
 export const DataContext = createContext<IDataContext>({
-  setDataValues: (_newData: IData) => {
-    return null;
-  },
-  data: {} as IData
+  data: {} as IData,
+  setDataValues: (_newData: IData) => { return null },
 });
 
 export const DataProvider: FC<{ children: React.ReactNode }> = ({ children, }) => {
+
   const [data, setData] = useState<IData>({} as IData);
+
 
 
   return (

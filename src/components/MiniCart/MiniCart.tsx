@@ -24,14 +24,15 @@ export const MiniCart = () => {
         setShowMiniCart(!showMiniCart)
     }
 
-    const showNewOrder = () => {
+    const showNewOrderIcon = () => {
         setTimeout(() => newOrderRef?.current?.classList.add(styles.showNewOrder), 500)
+        setTimeout(() => newOrderRef?.current?.classList.remove(styles.showNewOrder), 1000)
+        setTimeout(() => newOrderRef?.current?.classList.add(styles.showNewOrder), 1500)
         setTimeout(() => newOrderRef?.current?.classList.remove(styles.showNewOrder), 2000)
     }
-    // console.log(data.stepFour);
 
     useEffect(() => {
-        if (data.stepFive) { return showNewOrder() }
+        if (data.stepFive) { return showNewOrderIcon() }
     }, [data.stepFive])
 
     return (
@@ -66,9 +67,8 @@ export const MiniCart = () => {
 
             <div className={styles.arrowBlock}>
                 <motion.div
-                    initial={{ visibility: 'hidden' }}
-                    animate={{ visibility: 'visible' }}
-                    className={styles.arrowBlock__newOrder} ref={newOrderRef}
+                    className={styles.arrowBlock__newOrder}
+                    ref={newOrderRef}
                 >
                     {newOrderIcon}
                 </motion.div>

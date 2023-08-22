@@ -7,18 +7,28 @@ import { packageIcon } from "../../data/icontsSvg";
 import { Form } from "../../components/Form/Form";
 import { useData } from "../../providers/DataContext";
 import { InputSize } from "../../components/UI/InputSize/InputSize";
+import { useAccessProvider } from "../../providers/AccessProvider";
+import { useEffect } from "react";
 
 export const StepThree = () => {
   const { data: newPackage, setDataValues } = useData();
+  const { access, setAccess } = useAccessProvider()
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!access.accessStepThree) {
+      navigate(-1)
+    }
+  }, [access])
 
   const { handleSubmit, register, formState: { isValid, submitCount, errors }, } = useForm<IStepThree>(
     {
       mode: "onBlur",
       reValidateMode: "onChange",
-      defaultValues:{
-        height:11,
-        length:11,
+      defaultValues: {
+        height: 11,
+        length: 11,
         // packageType: 'paperboard',
         weight: 11,
         width: 11,
@@ -39,7 +49,8 @@ export const StepThree = () => {
       }
 
     });
-    console.log(newPackage);
+    // console.log(newPackage);
+    setAccess({ ...access, accessStepFour: true })
     return navigate("/step-four");
   };
 

@@ -38,6 +38,7 @@ code {
 }
 
 p {
+  // font-size: 22px;
   margin-block-start: 0;
   margin-block-end: 0;
   margin-inline-start: 0px;
@@ -86,9 +87,9 @@ h3 {
   font-size: var(--primary-font-size-heading);
 }
 
-p {
-  font-size: var(--primary-font-size-text);
-}
+// p {
+//   font-size: var(--primary-font-size-text);
+// }
 
 @media screen and (max-width: 800px) {
   h3 {

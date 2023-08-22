@@ -5,14 +5,14 @@
   overflow: hidden;
   height: 54px;
   // border: 1px solid red;
-  // gap: 10px;
-  // padding: 5px;
-  // border-radius: 8px;
-  // height: 60px;
-  // overflow: hidden;
+  width: 100%;
+}
+p {
+  font-size: 10px !important;
 }
 
 .radioBlock {
+
   display: flex;
   background-color: #313f47;
   border-radius: 5px;
@@ -21,4 +21,37 @@
 
 .radioGroup {
   display: flex;
+}
+
+@media screen and (max-width: 530px) {
+  .main {
+    height: 45px;
+  }
+
+  .radioBlock {
+    padding: 0 4px !important;
+    height: 40px !important;
+  }
+
+  .radioGroup {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 345px) {
+  .main {
+    height: fit-content;
+    display: flex !important;
+    flex-direction: column !important;
+
+    // border: 1px solid red;
+  }
+  
+  .radioBlock {
+    // flex-direction: column;
+    
+    padding: 15px 8px !important;
+    height: 40px !important;
+    // flex-direction: column;
+  }
 }

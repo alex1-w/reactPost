@@ -8,19 +8,42 @@ import { StepThree } from "./pages/StepThree/StepThree";
 import { StepFour } from "./pages/StepFour/StepFour";
 import { StepFive } from "./pages/StepFive/StepFive";
 import { Packages } from "./pages/Packages/Packages";
+import { RequireAccess } from "./HOC/RequireAccess";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
+
           <Route index element={<StepOne />} />
-          <Route path="step-two" element={<StepTwo />} />
-          <Route path="step-three" element={<StepThree />} />
-          <Route path="step-four" element={<StepFour />} />
-          <Route path="step-five" element={<StepFive />} />
+
+          <Route path="step-two" element={
+            <RequireAccess>
+              <StepTwo />
+            </RequireAccess>}
+          />
+
+          <Route path="step-three" element={
+            <RequireAccess>
+              <StepThree />
+            </RequireAccess>}
+          />
+
+          <Route path="step-four" element={
+            <RequireAccess>
+              <StepFour />
+            </RequireAccess>}
+          />
+
+          <Route path="step-five" element={
+            <RequireAccess>
+              <StepFive />
+            </RequireAccess>}
+          />
+          
           <Route path="orders" element={<Packages />} />
-          <Route path="*" element={<NotFoundPages />} />
+          {/* <Route path="*" element={<NotFoundPages />} /> */}
         </Route>
       </Routes>
     </>

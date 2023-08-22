@@ -9,9 +9,12 @@ import { InputBlock } from "../../components/UI/InputBlock/InputBlock";
 import { IStepOne } from "../../types/StepsInterfaces";
 import { Form } from "../../components/Form/Form";
 import { worldIcon } from "../../data/icontsSvg";
+import { useAccessProvider } from "../../providers/AccessProvider";
 
 export const StepOne = () => {
   const { setDataValues, data: newPackage } = useData();
+  const { access, setAccess } = useAccessProvider()
+
   const navigation = useNavigate();
 
   const fieldNameCheck = (field: string) => Boolean(field.match(/[a-z]/i)) || "только латиница"
@@ -38,12 +41,12 @@ export const StepOne = () => {
       mode: "onBlur",
       reValidateMode: "onChange",
       defaultValues: {
-        firstNameSenders: "smith",
-        lastNameSenders: "jhon",
-        phoneNumberSenders: '890030179193',
-        firstNameReceiver: "jhonson",
-        lastNameReceiver: "alex",
-        phoneNumberReceiver: '7903512935275',
+        firstNameSenders: "dddddd",
+        lastNameSenders: "dddddd",
+        phoneNumberSenders: '333333333333',
+        firstNameReceiver: "fffff",
+        lastNameReceiver: "ffffff",
+        phoneNumberReceiver: '33333333333',
       },
     });
 
@@ -64,9 +67,12 @@ export const StepOne = () => {
         }
       }
     );
-    console.log(newPackage);
+
+    setAccess({ ...access, accessStepTwo: true })
+
     return navigation("/step-two");
   };
+
 
   return (
     <>

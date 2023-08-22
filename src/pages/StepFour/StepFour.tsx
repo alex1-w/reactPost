@@ -8,9 +8,20 @@ import { useNavigate } from "react-router-dom";
 import { coinIcon } from "../../data/icontsSvg";
 import { Form } from "../../components/Form/Form";
 import { useData } from "../../providers/DataContext";
+import { useAccessProvider } from "../../providers/AccessProvider";
+import { useEffect } from "react";
 
 export const StepFour = () => {
   const navigate = useNavigate();
+  const { access, setAccess } = useAccessProvider()
+
+  useEffect(() => {
+    if (!access.accessStepFour) {
+      navigate(-1)
+    }
+  }, [access])
+
+
   const { data: newPackage, setDataValues } = useData();
 
   const { register, formState: { errors, submitCount, isValid }, handleSubmit } = useForm<IStepFour>(
@@ -18,7 +29,7 @@ export const StepFour = () => {
       mode: "onBlur",
       reValidateMode: "onChange",
       defaultValues: {
-        cardNumber: 1111111111111111
+        cardNumber: 34532543
       }
     });
 
@@ -33,7 +44,8 @@ export const StepFour = () => {
         passport: data.passport,
       }
     });
-    console.log(newPackage);
+    setAccess({ ...access, accessStepFive: true })
+
     return navigate("/step-five");
   };
 
@@ -56,9 +68,9 @@ export const StepFour = () => {
             type="number"
             label="0000 0000 0000 0000"
             rules={{
-              required: { value: true, message: "поле обязательно" },
-              minLength: { value: 16, message: "минимальное количество - 16" },
-              maxLength: { value: 20, message: "максимальное количество 20" },
+              // required: { value: true, message: "поле обязательно" },
+              // minLength: { value: 16, message: "минимальное количество - 16" },
+              // maxLength: { value: 20, message: "максимальное количество 20" },
             }}
           />
         </div>

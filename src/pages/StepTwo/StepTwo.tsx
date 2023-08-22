@@ -11,10 +11,21 @@ import { Form } from "../../components/Form/Form";
 import { worldIcon } from "../../data/icontsSvg";
 import { useData } from "../../providers/DataContext";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useAccessProvider } from "../../providers/AccessProvider";
 
 export const StepTwo = () => {
   const { setDataValues, data: newPackage } = useData();
+  const { access, setAccess } = useAccessProvider()
   const navigation = useNavigate();
+
+
+  useEffect(() => {
+    if (!access.accessStepTwo) {
+      navigation(-1)
+    }
+  }, [access])
+
 
   const { register, handleSubmit, control, formState: { errors, isValid, submitCount }, watch, } = useForm<IStepTwo>(
     {
@@ -26,6 +37,7 @@ export const StepTwo = () => {
         insuranceType: "",
       },
     });
+
   const isInsurance = watch("insurance");
 
   const error: SubmitErrorHandler<IStepTwo> = (errors) => { };
@@ -40,7 +52,10 @@ export const StepTwo = () => {
         insuranceType: data.insuranceType
       }
     });
-    console.log(newPackage);
+
+    setAccess({ ...access, accessStepThree: true })
+    // console.log(access);
+
     return navigation("/step-three");
   };
 

@@ -16,7 +16,6 @@ interface IFormProps {
 
 export const Form: FC<IFormProps> = ({ children, head, handleSubmit, isValid, submitCount, error, submit, }) => {
 
-
   return (
     <form
       noValidate

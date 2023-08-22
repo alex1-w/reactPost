@@ -9,45 +9,58 @@ import { StepFour } from "./pages/StepFour/StepFour";
 import { StepFive } from "./pages/StepFive/StepFive";
 import { Packages } from "./pages/Packages/Packages";
 import { RequireAccess } from "./HOC/RequireAccess";
+import AccessProvider from "./providers/AccessProvider";
+import { OrderProvider } from "./providers/OrdersContext";
+import { DataProvider } from "./providers/DataContext";
 
 function App() {
 
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
+    <AccessProvider>
+      <OrderProvider>
+        <DataProvider>
 
-          <Route index element={<StepOne />} />
 
-          <Route path="step-two" element={
-            <RequireAccess>
-              <StepTwo />
-            </RequireAccess>}
-          />
+          <HashRouter basename="/">
+            <Routes>
+              <Route path="/" element={<Layout />}>
 
-          <Route path="step-three" element={
-            <RequireAccess>
-              <StepThree />
-            </RequireAccess>}
-          />
+                <Route index element={<StepOne />} />
 
-          <Route path="step-four" element={
-            <RequireAccess>
-              <StepFour />
-            </RequireAccess>}
-          />
+                <Route path="step-two" element={
+                  <RequireAccess>
+                    <StepTwo />
+                  </RequireAccess>}
+                />
 
-          <Route path="step-five" element={
-            <RequireAccess>
-              <StepFive />
-            </RequireAccess>}
-          />
+                <Route path="step-three" element={
+                  <RequireAccess>
+                    <StepThree />
+                  </RequireAccess>}
+                />
 
-          <Route path="orders" element={<Packages />} />
-          <Route path="*" element={<NotFoundPages />} />
-        </Route>
-      </Routes>
-    </HashRouter>
+                <Route path="step-four" element={
+                  <RequireAccess>
+                    <StepFour />
+                  </RequireAccess>}
+                />
+
+                <Route path="step-five" element={
+                  <RequireAccess>
+                    <StepFive />
+                  </RequireAccess>}
+                />
+
+                <Route path="orders" element={<Packages />} />
+                <Route path="*" element={<NotFoundPages />} />
+              </Route>
+            </Routes>
+          </HashRouter>
+
+        </DataProvider>
+      </OrderProvider>
+    </AccessProvider>
+
   );
 }
 

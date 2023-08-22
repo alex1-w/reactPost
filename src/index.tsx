@@ -14,13 +14,15 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
 
-    <AccessProvider>
+    {/* <AccessProvider>
       <OrderProvider>
-        <DataProvider>
-          <App />
-        </DataProvider>
+        <DataProvider> */}
+
+    <App />
+
+    {/* </DataProvider>
       </OrderProvider>
-    </AccessProvider>
+    </AccessProvider> */}
 
   </React.StrictMode>
 );

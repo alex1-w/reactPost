@@ -27,10 +27,7 @@ export const StepFour = () => {
   const { register, formState: { errors, submitCount, isValid }, handleSubmit } = useForm<IStepFour>(
     {
       mode: "onBlur",
-      reValidateMode: "onChange",
-      defaultValues: {
-        cardNumber: 34532543
-      }
+      reValidateMode: "onChange"
     });
 
   const error: SubmitErrorHandler<IStepFour> = (data) => console.log("error", data);
@@ -68,9 +65,9 @@ export const StepFour = () => {
             type="number"
             label="0000 0000 0000 0000"
             rules={{
-              // required: { value: true, message: "поле обязательно" },
-              // minLength: { value: 16, message: "минимальное количество - 16" },
-              // maxLength: { value: 20, message: "максимальное количество 20" },
+              required: { value: true, message: "поле обязательно" },
+              minLength: { value: 16, message: "минимальное количество - 16" },
+              maxLength: { value: 20, message: "максимальное количество 20" },
             }}
           />
         </div>

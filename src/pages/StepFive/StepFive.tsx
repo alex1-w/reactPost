@@ -1,5 +1,5 @@
 import styles from "./StepFive.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "../../components/Container/Container";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import { IStepFive } from "../../types/StepsInterfaces";
@@ -11,8 +11,10 @@ import { useData } from "../../providers/DataContext";
 import useWindowSize from "react-use/lib/useWindowSize";
 import { useOrderContext } from "../../providers/OrdersContext";
 import { useAccessProvider } from "../../providers/AccessProvider";
+import { useNavigate } from "react-router";
 
 export const StepFive = () => {
+  const navigate = useNavigate();
 
   const { data: newPackage, setDataValues } = useData();
   const { access, setAccess } = useAccessProvider()
@@ -20,14 +22,7 @@ export const StepFive = () => {
   const { addOrders } = useOrderContext()
   const [rating, setRating] = useState<any>();
 
-  // const { width, height } = useWindowSize();
-  const congratulation = () => {
-    // return setTimeout(() => {
-    //   console.log(3232);
-    //   <Confetti width={width} height={height} />;
-    // }, 10);
-    // return <Confetti width={width} height={height} />
-  };
+  useEffect(() => { if (!access.accessStepFive) navigate(-1) }, [access])
 
   const { register, handleSubmit, formState: { isValid, submitCount, errors } } = useForm(
     {

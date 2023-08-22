@@ -54,8 +54,6 @@ export const StepTwo = () => {
     });
 
     setAccess({ ...access, accessStepThree: true })
-    // console.log(access);
-
     return navigation("/step-three");
   };
 

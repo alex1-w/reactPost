@@ -25,14 +25,7 @@ export const StepThree = () => {
   const { handleSubmit, register, formState: { isValid, submitCount, errors }, } = useForm<IStepThree>(
     {
       mode: "onBlur",
-      reValidateMode: "onChange",
-      defaultValues: {
-        height: 11,
-        length: 11,
-        // packageType: 'paperboard',
-        weight: 11,
-        width: 11,
-      }
+      reValidateMode: "onChange"
     });
 
   const error: SubmitErrorHandler<IStepThree> = (data) => console.log("error", data);
@@ -49,7 +42,6 @@ export const StepThree = () => {
       }
 
     });
-    // console.log(newPackage);
     setAccess({ ...access, accessStepFour: true })
     return navigate("/step-four");
   };

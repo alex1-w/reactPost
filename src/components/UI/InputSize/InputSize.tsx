@@ -7,9 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 interface IInputSize {
     unit: "кг" | "см";
     name: string;
-    // label?: string;
     size: "small" | "medium";
-    // type: "number" | "text" | "password";
     register: UseFormRegister<any>;
     errors: string | undefined;
     rules: RegisterOptions;

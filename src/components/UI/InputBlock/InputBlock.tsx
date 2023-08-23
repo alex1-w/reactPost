@@ -12,12 +12,12 @@ interface IInputBlock {
   size: "small" | "medium";
   type: "number" | "text" | "password";
   register: UseFormRegister<any>;
-  errors: any;
+  error: string | undefined;
   rules: RegisterOptions;
   multiline?: { multilineValue: boolean; rows: number };
 }
 
-export const InputBlock: FC<IInputBlock> = ({ errors, name, register, rules, size, type, label, sizeStyle, multiline, }) => {
+export const InputBlock: FC<IInputBlock> = ({ error, name, register, rules, size, type, label, sizeStyle, multiline, }) => {
 
   return (
     <div className={cn(styles.main, { [styles.sizeStyles]: sizeStyle === "кг" || sizeStyle === "см" })}>
@@ -36,18 +36,18 @@ export const InputBlock: FC<IInputBlock> = ({ errors, name, register, rules, siz
       </div>
 
       <AnimatePresence>
-        {errors[name] && (
+        {error && (
           <motion.p
             className={styles.main__error}
             initial={{ height: 0, y: "-100", opacity: 0 }}
             animate={{ height: "auto", y: 0, opacity: 1 }}
             exit={{ height: 0, y: "-100", opacity: 0 }}
           >
-            {errors[name].message}
+            {error}
           </motion.p>
         )}
       </AnimatePresence>
-      
+
     </div>
   );
 };

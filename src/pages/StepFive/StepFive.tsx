@@ -63,7 +63,7 @@ export const StepFive = () => {
 
         <div className={styles.main}>
           <InputBlock
-            errors={errors}
+            error={errors.comment?.message}
             name="comment"
             register={register}
             rules={{

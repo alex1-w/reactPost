@@ -58,7 +58,7 @@ export const StepFour = () => {
       >
         <div className={styles.inputsBlock}>
           <InputBlock
-            errors={errors}
+            error={errors.cardNumber?.message}
             name="cardNumber"
             register={register}
             size="medium"

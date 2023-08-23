@@ -81,7 +81,7 @@ export const StepOne = () => {
         <h3>От кого</h3>
 
         <InputBlock
-          errors={errors}
+          error={errors.firstNameSenders?.message}
           name="firstNameSenders"
           register={register}
           rules={rulesForNameInput}
@@ -91,7 +91,7 @@ export const StepOne = () => {
         />
 
         <InputBlock
-          errors={errors}
+          error={errors.lastNameSenders?.message}
           name="lastNameSenders"
           register={register}
           rules={rulesForNameInput}
@@ -101,7 +101,7 @@ export const StepOne = () => {
         />
 
         <InputBlock
-          errors={errors}
+          error={errors.phoneNumberSenders?.message}
           name="phoneNumberSenders"
           register={register}
           rules={rulesForTelInput}
@@ -116,7 +116,7 @@ export const StepOne = () => {
         <h3>Кому</h3>
 
         <InputBlock
-          errors={errors}
+          error={errors.firstNameReceiver?.message}
           name="firstNameReceiver"
           register={register}
           rules={rulesForNameInput}
@@ -126,7 +126,7 @@ export const StepOne = () => {
         />
 
         <InputBlock
-          errors={errors}
+          error={errors.lastNameReceiver?.message}
           name="lastNameReceiver"
           register={register}
           rules={rulesForNameInput}
@@ -136,7 +136,7 @@ export const StepOne = () => {
         />
 
         <InputBlock
-          errors={errors}
+          error={errors.phoneNumberReceiver?.message}
           name="phoneNumberReceiver"
           register={register}
           rules={rulesForTelInput}
